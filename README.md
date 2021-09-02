@@ -1,5 +1,5 @@
 # geosoft_1_final_project
-## Task: 
+## Task
 Develops a map-based,  interactive, digital city guide. The  city guide is intended to facilitate the addition and  search for places of interest in  Muenster (NRW, Germany).
 
 ## Technologie
@@ -26,6 +26,6 @@ Develops a map-based,  interactive, digital city guide. The  city guide is inten
 
 
 ## contributors
-- @TobiasBrand-GI Tobias Brandt
-- @OTI2020        Gustav von Arnim
-- @GolfEchoOscar  Dominik Zubel
+- @TobiasBrand-GI - Tobias Brandt
+- @OTI2020 - Gustav von Arnim
+- @GolfEchoOscar - Dominik Zubel
