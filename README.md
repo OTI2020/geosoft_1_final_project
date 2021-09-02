@@ -26,6 +26,6 @@ Develops a map-based,  interactive, digital city guide. The  city guide is inten
 
 
 ## contributors
-@TobiasBrand-GI Tobias Brandt
-@OTI2020        Gustav von Arnim
-@GolfEchoOscar  Dominik Zubel
+- @TobiasBrand-GI Tobias Brandt
+- @OTI2020        Gustav von Arnim
+- @GolfEchoOscar  Dominik Zubel
