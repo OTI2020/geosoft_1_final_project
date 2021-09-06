@@ -20,15 +20,15 @@ var hotOSM = new L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.p
 
 
 
-
+/*
 // add a marker in the given location, attach some popup content to it and open the popup
 var ifgi_marker = L.marker([51.969279, 7.595796]).addTo(map);
 ifgi_marker.bindPopup('ifgi');
 ifgi_marker.openPopup();
+*/
 
 
-
-
+/*
 // add circle to 
 var ms_city_circle = new L.circle([51.961693, 7.627931], 250, {
     color: 'red',
@@ -38,10 +38,10 @@ var ms_city_circle = new L.circle([51.961693, 7.627931], 250, {
 
 ms_city_circle.bindPopup("Münster Innenstadt. <br/><img src='https://www.uni-muenster.de/imperia/md/images/zentral/international/bildergalerie/prinzipalmarkt_panorama_1200px.jpg'/ width='300px'>");
 ms_city_circle.openPopup();
+*/
 
 
-
-
+/*
 var church_Ueberwasserkirche_GeojsonFeature = {
     "type": "Feature",
         "properties": {
@@ -88,7 +88,7 @@ var church_Ueberwasserkirche_GeojsonFeature = {
 
 var overlay = L.geoJson(church_Ueberwasserkirche_GeojsonFeature);
 overlay.bindPopup(church_Ueberwasserkirche_GeojsonFeature.properties.name);
-
+*/
 
 
 
@@ -97,9 +97,36 @@ var baseMaps = {
     "OSM": osm,
     "humanitarian OSM": hotOSM
 };
-
+/*
 var overlayMaps = {
     "nice_church": overlay
-};
+};*/
 
-L.control.layers(baseMaps, overlayMaps).addTo(map);
+L.control.layers(baseMaps).addTo(map);
+//L.control.layers(baseMaps, overlayMaps).addTo(map);
+
+
+
+
+//Feature Group Layers for the Input Features
+var location_layer = L.featureGroup().addTo(map);
+
+//draw Features
+var drawControl = new L.Control.Draw({
+    draw: {
+        //disable all draw functions but Points and Polygons
+        polyline: false, 
+        polygon: true,
+        circle: false,
+        circlemarker: false,
+        marker: true,
+        rectangle: false
+    },
+    edit: {
+        //drawn features will be stored in the locationLayer
+        featureGroup: location_layer,
+        remove: false,
+        edit: false
+    }
+}); 
+map.addControl(drawControl); //add the control to the map
