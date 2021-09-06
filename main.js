@@ -14,11 +14,11 @@ function main() {
 
 
 /**
- * @returns map - leaflat amp, that contains tilelayer, markerGEO1 and 
+ * @returns map - leaflat map, that contains tilelayer, markerGEO1 and 
  * given geoJSON route from the learnweb
  */
 function create_map_with_route_and_marker() {
-    var map=L.map('map').setView([51, 9], 5)
+    var map=L.map('map').setView([51, 9], 13)
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 18,
@@ -62,11 +62,11 @@ function get_toolbar_functionality(in_map) {
             }
         },
         draw: {
-            polyline: false,
+            polyline: true,
             polygon: false,
-            marker: false,
+            marker: true,
             circle:false,
-            rectangle: true
+            rectangle: false
         }
     }))
 
