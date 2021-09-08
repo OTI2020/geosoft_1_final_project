@@ -13,7 +13,7 @@
     "leaflet": "^1.7.1",
     "leaflet-draw": "^1.0.4",
     "mongodb": "^3.6.9",
-    "nodemon": "^2.0.7",
+    "nodemon": "^2.0.12",
     "path": "^0.12.7",
     "turf": "^3.0.14"
   }

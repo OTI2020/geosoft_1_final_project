@@ -44,7 +44,7 @@
         var layer = event.layer;
         drawnItems.addLayer(layer);
 
-        let form_popup = "<b><u>Informationen zur Sehenswürdigkeit</u></b><table id='popupTable'><tr><th>Name:</th><th><input type='text'></input></th></tr><tr><th>URL (Wikipedia):</th><th><input type='text'></input></th></tr><tr><th>Beschreibung:</th><th><input type='text'></input></th></tr></table><input type='Button' id='popupButton' value='Speichern' onclick='#' class='btn'></input>";
+        let form_popup = "<b><u>Informationen zur Sehenswürdigkeit</u></b><table id='popupTable'><tr><th>Name:</th><th><input type='text'></input></th></tr><tr><th>URL (Wikipedia):</th><th><input type='text'></input></th></tr><tr><th>Beschreibung:</th><th><input type='text'></input></th></tr></table><input type='Button' id='popupButton' value='Speichern' onclick='sendData()' class='btn'></input>";
             drawnItems.bindPopup(form_popup).openPopup();
     })
 
@@ -79,4 +79,7 @@ function getWeatherData(coordinateArray, marker){
     }).done(function() {
         $( this ).addClass( "done" );
       });
+}
+function sendData(){
+    console.log("Data send");
 }
