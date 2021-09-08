@@ -1,0 +1,78 @@
+  .navbar {
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+  .navbar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  .navbar a:hover {
+    background-color: #6a6b6b;
+    color: #f2f2f2;
+  }
+  .navbar a.active {
+    background-color: rgb(46,96,138);
+    color: white;
+  }
+
+
+  #myFooter {
+    margin:0;
+    padding:0;
+    color: white;
+    width: 100%;
+    min-height: 160px;
+    position: relative;
+    bottom: 0%;
+    text-align: center;
+}
+
+#myFooter .footer-copyright {
+    background-color: black;
+    margin:0;
+    height: fit-content;
+    position: relative;
+    bottom:0rem;
+    width: 100%;
+}
+
+#myFooter .row {
+    text-align: center;
+}
+
+#myFooter ul {
+    list-style-type: none;
+    line-height: 1.7;
+}
+
+#myFooter h5 {
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+#myFooter a {
+    color: #d2d1d1;
+    text-decoration: none;
+}
+
+#myFooter a:hover,
+#myFooter a:focus {
+    text-decoration: none;
+    color: white;
+}
+
+#copyrightText p{
+    position: relative;
+    top:45%;
+    min-height: 35px;
+}
+

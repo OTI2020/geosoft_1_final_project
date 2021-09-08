@@ -1,0 +1,21 @@
+version: "3"
+services:
+  app:
+    container_name: map_website
+    build: .
+    image: tobiasbrand/mapservice_geosoft
+    ports:
+      - "3000:3000" # forward webserver on standard-http port
+    depends_on:
+      - mongodbservice
+  mongodbservice:
+    container_name: mongo
+    image: mongo # to be retrieved from dockerhub
+    ports:
+      - "27017:27017" # forward mongod port
+    
+  mongoexpressservice:
+    image: mongo-express
+    ports: 
+      - "8081:8081"
+    
