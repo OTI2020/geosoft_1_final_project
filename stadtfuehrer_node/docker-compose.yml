@@ -1,9 +1,9 @@
 version: "3"
 services:
   app:
-    container_name: map_website
+    container_name: stadtfuehrer
     build: .
-    image: tobiasbrand/mapservice_geosoft
+    image: tobiasbrand/stadtfuehrer
     ports:
       - "3000:3000" # forward webserver on standard-http port
     depends_on:

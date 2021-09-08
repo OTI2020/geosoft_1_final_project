@@ -35,6 +35,6 @@ app.get("/home", (req, res) => { res.sendFile(__dirname + "/public/index.html");
 
 //Listener
 app.listen(port, () => {
-	console.log(`Example app listening at http://localhost:${port}`);
+	console.log(`Service listening at http://localhost:${port}`);
     }
 );

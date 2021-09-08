@@ -9,8 +9,8 @@
     <!--_____LEAFLET DRAW CSS_____-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css"/>
     <!--_____OWN CSS_____-->
-    <link rel="stylesheet" href="sights_config.css"/>
-    <link rel="stylesheet" href="headerFooterCustom.css">
+    <link rel="stylesheet" href="css/sights_config.css"/>
+    <link rel="stylesheet" href="css/headerFooterCustom.css">
     <!--_____LEAFLET JAVASCRIPT_____-->
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
     <!--_____LEAFLET DRAW JAVASCRIPT_____-->
@@ -50,20 +50,22 @@
         
         <!-- MAIN CONTENT-->
         <div id="contentFrame" class="d-flex justify-content-center flex-wrap align-items-center p-5">
-            <div id="textContent" class=" col col-lg-2 col-12 rounded text-lg-left">
+            <div id="textContent" class=" col col-lg-3 col-12 rounded text-lg-left">
                 <h1> 
-                    Verwaltung von Sehenswürdigkeiten
+                    Verwaltung von Points of Interest.
                 </h1>
                 <p>
                     Hier können Sehenswürdigkeiten zum Bestand hinzugefügt,<br>
                     bearbeitet oder gelöscht werden. Klicken Sie dazu einfach auf die Karte.
+                    Alternativ können Sie auch eine GeoJSON Datei hochladen oder den Code in das Textfeld einfügen.
                 </p>
             </div>
-            <div class="col col-lg-2 col-0"></div>
+            <div class="col col-lg-1 col-0"></div>
             <div id="mapid" class="col col-lg-8 col-12 border border-dark rounded align-self-lg-end"></div>
-            <script src="leafletMain.js"></script>
+            <script src="js/leafletMain.js"></script>
+
         </div>
-        <di id="spacer"></div>
+    </div>
         <!-- FOOTER-->
         <footer id="myFooter" class="row col col-12 bg-dark d-flex flex-column align-items-left">
                 <div class="row col col-12 d-flex flex-column ">
@@ -77,7 +79,7 @@
                     <p>© 2021 Geosoftware Project </p>
                 </div>
         </footer>
-    </div>
+    
 
     <!-- JQUERY AND BOOTSTRAP JAVASCRIPT-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
