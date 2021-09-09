@@ -54,10 +54,9 @@ table, tr, th{
 th{
     padding: 0.5rem;
 }
-#popupTable tr:nth-child(even){background-color: rgb(12, 55, 90,0.5);}
-#popupTable tr:nth-child(odd){background-color: rgba(12, 55, 90,0.2);}
-#popupButton{
+.even{background-color: rgb(12, 55, 90,0.5);}
+.odd{background-color: rgba(12, 55, 90,0.2);}
+.pupBtn{
     background-color:rgba(12, 55, 90,0.2);
     margin-top: 0.5rem;
 }
-
