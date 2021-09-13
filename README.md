@@ -28,4 +28,4 @@ Develops a map-based,  interactive, digital city guide. The  city guide is inten
 ## contributors
 - [@TobiasBrand-GI](https://github.com/TobiasBrand-GI) - Tobias Brand
 - [@OTI2020](https://github.com/OTI2020) - Gustav von Arnim
-- [@GolfEchoOscar](https://github.com/GolfEchoOscar) - Dominik Zubel
+- [@GolfEchoOscar](https://github.com/GolfEchoOscar) - Dominik Zubel 
