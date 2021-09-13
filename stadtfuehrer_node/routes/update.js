@@ -10,8 +10,8 @@ app.use(express.urlencoded());
 //MongoConnect
 //-------------->>>>Hier muss die passende Datenbank und die passende Collection angegeben werden!!!!!<<<<--------------
 const url = 'mongodb://mongo:27017' // connection URL
-const dbName = 'testserver_db' // database name
-const collectionName = 'routes' // collection name
+const dbName = 'mainDB' // database name
+const collectionName = 'pois' // collection name
 //----------------------------------------------------------------------------------------------------------------------
 const MongoClient = require('mongodb').MongoClient
 const client = new MongoClient(url) // mongodb client

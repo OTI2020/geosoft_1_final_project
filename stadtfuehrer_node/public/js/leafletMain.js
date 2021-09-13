@@ -43,8 +43,29 @@
     mymap.on(L.Draw.Event.CREATED, function (event) {
         var layer = event.layer;
         drawnItems.addLayer(layer);
-
-        let form_popup = "<form action='/add/newpoi' method='post' class='form-horizontal' role='form'><fieldset><div class='form-group odd'><label class='form-label'>Name:&nbsp;</label><input type='text' class='form-input' name='pname'/></div><div class='form-group even'><label>URL (Wikipedia):&nbsp;</label><input type='text' name='purl'/></div><div class='form-group odd'><label>Beschreibung:&nbsp;</label><label name='pdescribe'>keine Information verfügbar</label></div></fieldset><button class='btn pupBtn' type='submit'>Speichern</button></form>";
+        let coords=layer.getLatLng();
+        console.log(coords);
+        let form_popup = "<form action='/add/newpoi' method='post' class='form-horizontal' role='form'>"+
+            "<fieldset>"+
+                "<div class='form-group odd'>"+
+                    "<label class='form-label'>Name:&nbsp;</label>"+
+                    "<input type='text' class='form-input' name='pname'/>"+
+                "</div>"+
+                "<div class='form-group even'>"+
+                    "<label>URL (Wikipedia):&nbsp;</label>"+
+                    "<input type='text' name='purl'/>"+
+                "</div>"+
+                "<div class='form-group odd'>"+
+                    "<label>Beschreibung:&nbsp;</label>"+
+                    "<label name='pdescribe' placeholder='keine Information verfügbar'></label>"+
+                "</div>"+
+                "<div class='form-group odd'>"+
+                    "<label>Koordinaten:&nbsp;</label>"+
+                    "<input type='text' name='pcoords' readonly='readonly'value='"+coords+"'/>"+
+                "</div>"+
+            "</fieldset>"+
+            "<button class='btn pupBtn' type='submit'>Speichern</button>"+
+            "</form>";
             drawnItems.bindPopup(form_popup).openPopup();
     })
 

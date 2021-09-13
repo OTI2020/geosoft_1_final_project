@@ -2,28 +2,24 @@ var express = require('express');
 var router = express.Router();
 const MongoClient = require('mongodb').MongoClient
 const assert = require('assert')
+const app = express();
+
+//Here we are configuring express to use body-parser as middle-ware
+app.use(express.json());
+app.use(express.urlencoded());
 
 const url = 'mongodb://localhost:27017' // connection URL
 const client = new MongoClient(url) // mongodb client
 const dbName = 'mainDB' // database name
 const collectionName = 'pois' // collection name
 
-/* GET add page. */
-router.get('/', function(req, res, next) {
-  res.render('add', { title: 'Add Page' });
-});
-
 router.post('/newpoi', function(req, res, next) 
 {
   console.log("A new poi has been added")
-
-  console.log(req.body)
   let poi = {}
   poi.poiname = req.body.pname
-  poi.cityname = req.body.cname
-  poi.coordinates = req.body.longlat
-  poi.link = req.body.picurl
-
+  poi.coordinates = req.body.pcoords
+  poi.link = req.body.purl
 
   // connect to the mongodb database and afterwards, insert one the new element
   client.connect(function(err) 
@@ -42,11 +38,10 @@ router.post('/newpoi', function(req, res, next)
       assert.equal(1, result.result.ok)
       //console.log(result)
       console.log(`Inserted ${result.insertedCount} document into the collection`)
-      res.render('2_add_notification', { title: 'Addition Completed', data: poi});
-     })
-  
-  })    
-
+      res.sendFile(__dirname, "../public/sights_config.html")
+    })
+    
+  }) 
 
 });
 module.exports = router;
