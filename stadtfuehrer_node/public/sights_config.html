@@ -59,9 +59,13 @@
                     bearbeitet oder gelöscht werden. Klicken Sie dazu einfach auf die Karte.
                     Alternativ können Sie auch eine GeoJSON Datei hochladen oder den Code in das Textfeld einfügen.
                 </p>
+                <input type="text" id="gjsonInput"/>
+                <button id="gjsonUpload" class="btn btn-primary pupBtn" onclick="uploadJson()">Datei benutzen</button>
+                <button id="gjsonSubmit" class="btn btn-primary pupBtn" onclick="loadJsonFeature()">Zur Karte Hinzufügen</button>
             </div>
             <div class="col col-lg-1 col-0"></div>
-            <div id="mapid" class="col col-lg-8 col-12 border border-dark rounded align-self-lg-end"></div>
+            <div id="mapid" class="col col-lg-8 col-12 border border-dark rounded align-self-lg-end" onload="getDatafromDB()"></div>
+            <script src="js/leafletData.js"></script>
             <script src="js/leafletMain.js"></script>
 
         </div>

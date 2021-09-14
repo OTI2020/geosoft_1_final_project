@@ -57,6 +57,7 @@ th{
 .even{background-color: rgb(12, 55, 90,0.5);}
 .odd{background-color: rgba(12, 55, 90,0.2);}
 .pupBtn{
-    background-color:rgba(12, 55, 90,0.2);
+    color: rgb(12, 55, 90);;
+    background-color:pink;
     margin-top: 0.5rem;
 }

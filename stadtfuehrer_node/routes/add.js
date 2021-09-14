@@ -18,7 +18,7 @@ router.post('/newpoi', function(req, res, next)
   console.log("A new poi has been added")
   let poi = {}
   poi.poiname = req.body.pname
-  poi.coordinates = req.body.pcoords
+  poi.json= req.body.pjson
   poi.link = req.body.purl
 
   // connect to the mongodb database and afterwards, insert one the new element
@@ -38,7 +38,7 @@ router.post('/newpoi', function(req, res, next)
       assert.equal(1, result.result.ok)
       //console.log(result)
       console.log(`Inserted ${result.insertedCount} document into the collection`)
-      res.sendFile(__dirname, "../public/sights_config.html")
+      res.redirect('/sights_config.html')
     })
     
   }) 

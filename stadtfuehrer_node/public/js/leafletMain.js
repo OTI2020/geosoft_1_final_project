@@ -7,14 +7,14 @@
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(mymap);
-
+    
 
 /**
  * Layer for later addition of markers
  * @type Leaflet Layer
  */
     let markerLayer = new L.layerGroup().addTo(mymap);
-
+getDatafromDB();
 /**
  * Layer on which the User can draw a shape
  * @type Leaflet Layer
@@ -43,29 +43,10 @@
     mymap.on(L.Draw.Event.CREATED, function (event) {
         var layer = event.layer;
         drawnItems.addLayer(layer);
-        let coords=layer.getLatLng();
-        console.log(coords);
-        let form_popup = "<form action='/add/newpoi' method='post' class='form-horizontal' role='form'>"+
-            "<fieldset>"+
-                "<div class='form-group odd'>"+
-                    "<label class='form-label'>Name:&nbsp;</label>"+
-                    "<input type='text' class='form-input' name='pname'/>"+
-                "</div>"+
-                "<div class='form-group even'>"+
-                    "<label>URL (Wikipedia):&nbsp;</label>"+
-                    "<input type='text' name='purl'/>"+
-                "</div>"+
-                "<div class='form-group odd'>"+
-                    "<label>Beschreibung:&nbsp;</label>"+
-                    "<label name='pdescribe' placeholder='keine Information verfügbar'></label>"+
-                "</div>"+
-                "<div class='form-group odd'>"+
-                    "<label>Koordinaten:&nbsp;</label>"+
-                    "<input type='text' name='pcoords' readonly='readonly'value='"+coords+"'/>"+
-                "</div>"+
-            "</fieldset>"+
-            "<button class='btn pupBtn' type='submit'>Speichern</button>"+
-            "</form>";
+        let geoJSONObj=layer.toGeoJSON();
+        let geoJSONStr=JSON.stringify(geoJSONObj)
+        console.log(geoJSONStr);
+        let form_popup = fillPopupHTML("","",geoJSONStr)
             drawnItems.bindPopup(form_popup).openPopup();
     })
 
@@ -101,7 +82,31 @@ function getWeatherData(coordinateArray, marker){
         $( this ).addClass( "done" );
       });
 }
-function sendData(){
-    
-    console.log("Data send");
-}
+//let response;
+function getDatafromDB() { 
+    {$.ajax({ //handle request via ajax
+        url: "/search", //request url is the prebuild request
+        method: "GET", //method is GET since we want to get data not post or update it
+        })
+        .done(function(res) { //if the request is done -> successful
+            //bind a popupto the given marker / the popupt is formatted in HTML and 
+            //is enriched with information extracted from the api response
+            //console.log(response[0].geojson.features[0]);
+            //response = res;
+            console.dir(res)
+            for(let i = 0; i < res.length; i++) {
+                let json=res[i].json
+                let resGeoJSON = JSON.parse(json);
+                var  layer = L.geoJSON(resGeoJSON);
+                markerLayer.addLayer(layer);
+                layer.bindPopup(fillPopupHTML(res[i].poiname, res[i].link, json));
+            }
+        })
+        .fail(function(xhr, status, errorThrown) { //if the request fails (for some reason)
+            console.log("Request has failed!", '/n', "Status: " + status, '/n', "Error: " + errorThrown); //we log a message on the console
+        })
+        .always(function(xhr, status) { //if the request is "closed", either successful or not 
+            console.log("Request completed"); //a short message is logged
+        })
+    }
+}   
