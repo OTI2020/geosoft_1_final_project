@@ -46,7 +46,7 @@ getDatafromDB();
         let geoJSONObj=layer.toGeoJSON();
         let geoJSONStr=JSON.stringify(geoJSONObj)
         console.log(geoJSONStr);
-        let form_popup = fillPopupHTML("","",geoJSONStr)
+        let form_popup = fillPopupHTML("","",geoJSONStr, 0)
             drawnItems.bindPopup(form_popup).openPopup();
     })
 
@@ -54,7 +54,7 @@ getDatafromDB();
     mymap.on('draw:deleted', function(e){
         var layers = e.layers;
         layers.eachLayer(function (layer) {
-            markerLayer.clearLayers(); // Clearing old markers
+            drawnItems.clearLayers(); // Clearing old markers
         });
     })
 
@@ -64,10 +64,10 @@ getDatafromDB();
  * @param {*} coordinateArray Coordinates of a single point
  * @param {*} marker Leaflet marker object
  */
+/*
 function getWeatherData(coordinateArray, marker){
     let lat= coordinateArray[0];
     let lng= coordinateArray[1];
-    //let tempText="";
     let url = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lng + "&exclude=minutely,hourly,daily&appid=" + weatherApi+"&units=metric"
     $.ajax({
         url: url,
@@ -82,31 +82,4 @@ function getWeatherData(coordinateArray, marker){
         $( this ).addClass( "done" );
       });
 }
-//let response;
-function getDatafromDB() { 
-    {$.ajax({ //handle request via ajax
-        url: "/search", //request url is the prebuild request
-        method: "GET", //method is GET since we want to get data not post or update it
-        })
-        .done(function(res) { //if the request is done -> successful
-            //bind a popupto the given marker / the popupt is formatted in HTML and 
-            //is enriched with information extracted from the api response
-            //console.log(response[0].geojson.features[0]);
-            //response = res;
-            console.dir(res)
-            for(let i = 0; i < res.length; i++) {
-                let json=res[i].json
-                let resGeoJSON = JSON.parse(json);
-                var  layer = L.geoJSON(resGeoJSON);
-                markerLayer.addLayer(layer);
-                layer.bindPopup(fillPopupHTML(res[i].poiname, res[i].link, json));
-            }
-        })
-        .fail(function(xhr, status, errorThrown) { //if the request fails (for some reason)
-            console.log("Request has failed!", '/n', "Status: " + status, '/n', "Error: " + errorThrown); //we log a message on the console
-        })
-        .always(function(xhr, status) { //if the request is "closed", either successful or not 
-            console.log("Request completed"); //a short message is logged
-        })
-    }
-}   
+  */

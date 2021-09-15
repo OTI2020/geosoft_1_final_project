@@ -9,7 +9,7 @@ app.use(express.urlencoded());
 
 //MongoConnect
 //-------------->>>>Hier muss die passende Datenbank und die passende Collection angegeben werden!!!!!<<<<--------------
-const url = 'mongodb://mongo:27017' // connection URL
+const url = 'mongodb://localhost:27017' // connection URL
 const dbName = 'mainDB' // database name
 const collectionName = 'pois' // collection name
 //----------------------------------------------------------------------------------------------------------------------
@@ -19,13 +19,15 @@ const client = new MongoClient(url) // mongodb client
 // Delete Router
 router.post('/removeEntry', function(req, res, next)
 {
+    console.log("in remove")
     client.connect(function(err)
     {
         const db = client.db(dbName)
         const collection = db.collection(collectionName)
         //check if number exists
-        collection.find({nummer: req.body.gNummer}).toArray(function(err, docs)
+        collection.find({json: req.body.pjson}).toArray(function(err, docs)
         {
+            console.log(req.body.pjson)
             assert.strictEqual(err, null)
 
             if(docs.length >= 1){
@@ -35,13 +37,13 @@ router.post('/removeEntry', function(req, res, next)
 
                 console.log(req.body);
                 //delete Document
-                collection.deleteOne({nummer: req.body.gNummer}, function(err, results){
+                collection.deleteOne({json: req.body.pjson}, function(err, results){
                     assert.strictEqual(err, null)
                 })
-                res.sendFile(__dirname + "../public/done.html")
+                res.redirect('/sights_config.html')
             }
             else {
-                res.sendFile(__dirname + "../public/error_nonexistent_number.html")
+                res.redirect('/index.html')
             }
 
         })
