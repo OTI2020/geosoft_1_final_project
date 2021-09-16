@@ -29,7 +29,8 @@ function getDatafromDB() {
         })
     }
 } 
-function generateHTML(name,url,json,exist, description){
+function generateHTML(name,url,json,exist,description){
+    console.log("html generated");
     let Lname=name;
     let Lurl=url;
     let Ljson=json;
@@ -39,11 +40,13 @@ function generateHTML(name,url,json,exist, description){
     let describetxt;
     let delbtn;
     if(exist==0){
+        console.log("exist ist 0")
         pathstr="/add/newpoi";
         btntxt="Speichern";
         describehtml="";
         delbtn="";
     }else if(exist==1){
+        console.log("exist ist 1")
         pathstr="/update/poi";
         btntxt="Aktualisieren";
         describetxt=description;
@@ -68,6 +71,6 @@ function generateHTML(name,url,json,exist, description){
         "</fieldset>"+
         "<button class='btn btn-primary' type='submit' name='action' value='update'>"+btntxt+"</button>"+delbtn+
     "</form>";
-
+    console.log(htmlString+"______________Exist ist"+exist)
     return htmlString;
 }

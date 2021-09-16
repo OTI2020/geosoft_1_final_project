@@ -22,8 +22,6 @@
     <!--_____TURF.JS JAVASCRIPT_____-->
     <script src='https://unpkg.com/@turf/turf@6.3.0/turf.min.js'></script>
     <!-- BOOTSTRAP SOURCES-->
-    <script src="js/wikipedia-data.js"></script>
-            <script src="js/leafletData.js"></script>
 
 </head>
 <body>
@@ -54,20 +52,29 @@
         <div id="contentFrame" class="d-flex justify-content-center flex-wrap align-items-center p-5">
             <div id="textContent" class=" col col-lg-3 col-12 rounded text-lg-left">
                 <h1> 
-                    Verwaltung von Points of Interest.
+                    Hinzufügen von POIs per GeoJSON Datei.
                 </h1>
                 <p>
-                    Hier können Sehenswürdigkeiten zum Bestand hinzugefügt,<br>
-                    bearbeitet oder gelöscht werden. Klicken Sie dazu einfach auf die Karte.
-                    Alternativ können Sie eine entsprechende Datei hochladen.
+                    Hier können Sehenswürdigkeiten zum Bestand hinzugefügt werden.<br>
+                    Fügen Sie dazu einfach GeoJSON-Code einer Punkt- oder einer Polygongeometrie in das Textfeld ein,
+                    oder laden Sie eine entsprechende Datei hoch.
                 </p>
             </div>
-            <div class="col col-lg-1 col-0"></div>
-            <div id="mapid" class="col col-lg-8 col-12 border border-dark rounded align-self-lg-end"></div><br>
+            <div id="fileUpload" class=" col col-lg-7 col-12 rounded  text-center text-lg-left">
+                <script src="js/addFile.js"></script>
+                <input type="file" id="gjsonUpload"/>
+            </div>
+            <div id="fileAddContent" class=" col col-lg-5 col-12 rounded text-lg-left"></div>  
+                
+                <form action="/add/newpoi" method='post' class='form-horizontal' role='form'>
+                    <div class='form-group'><input type='text' name='pjson'placeholder="GeoJSON-Code"/></div>
+                    <div class='form-group'><input type='text' name='pname' placeholder="Name des POI"/></div>
+                    <div class='form-group'><input type='text' name='purl' placeholder="Wikipedia-URL"/></div>
+                    <div class='form-group'><button id="gjsonSubmit" class="btn btn-primary pupBtn" type="submit">Zur Karte Hinzufügen</button></div>                
+                </form>
+            </div>
             
-            <script src="js/leafletMain.js"></script>
-            <form action="addPerFile.html" ><button type="submit" class="btn btn-secondary">Datei hochladen</button></form>
-            
+
         </div>
     </div>
         <!-- FOOTER-->

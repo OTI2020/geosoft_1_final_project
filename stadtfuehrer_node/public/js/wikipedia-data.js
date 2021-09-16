@@ -1,11 +1,30 @@
+let maxSnippetLength=250;
 function getWikipediaData(name,url,json,exist){
     if(exist==1){
-    let urlslashsplit=url.split("/");
-    let urldotsplit=urlslashsplit[2].split(".")
-    let lang=urldotsplit[0];
-    let title=urlslashsplit[4];
-    if(checkURL(url, urldotsplit)==true){
+    let urlexists=checkURL(url);
+    if(urlexists==true){
+        let decodedURL = decodeURI(url);
+        let urlslashsplit=decodedURL.split("/");
+        let urldotsplit=urlslashsplit[2].split(".")
+        let lang=urldotsplit[0];
+        let title=urlslashsplit[4];
         console.log(title)
+        try{
+            console.log("getryed");
+            $.getJSON("https://"+lang+".wikipedia.org/w/api.php?action=query&titles="+title+"&prop=extracts&exintro&explaintext&format=json&indexpageids&callback=?", function (data) {
+            pageid=data.query.pageids[0];
+            infotext=(data.query.pages[pageid].extract).substring(0,maxSnippetLength)
+            formatInfotext=infotext.replaceAt(maxSnippetLength,"&#8230;")
+            console.log(formatInfotext)
+            return generateHTML(name,url,json,exist,"formatInfotext")
+            });
+            
+        }catch(error){
+            console.log("gecatched")
+            return generateHTML(name,url,json,exist,"Keine Informationen verfügbar.")
+        }
+        
+        /*
         // http://www.zacwitte.com/getting-wikipedia-summary-from-the-page-id
             $.ajax({
               url: 'http://' + lang + '.wikipedia.org/w/api.php',
@@ -18,51 +37,47 @@ function getWikipediaData(name,url,json,exist){
               dataType:'jsonp',
               
               success: function(data) {
-                  console.log(data);
+                  console.log(data)
                 $.ajax({
                   url: 'http://' + lang + '.wikipedia.org/w/api.php',
                   data: {
                     action: 'parse',
-                    prop: "text",
-                    pages: title,
+                    prop: data.prop,
+                    page: title,
                     format:'json'
                   },
                   dataType:'jsonp',
                   success: function(data) {
+                      console.log("spider")
                       console.log(data)
-                      return generateHTML(name,url,json,exist,data );
-                    /*wikipage = $("<div>"+data.parse.title['*']+"<div>").children('p:first');
-                    wikipage.find('sup').remove();
-                    wikipage.find('a').each(function() {
-                      $(this)
-                        .attr('href', 'http://' + lang + '.wikipedia.org'+$(this).attr('href'));
-                        
-                    });*/
-                    
+                      return generateHTML(name,url,json,exist,"Information");
                   }
                   
                 });
                 
               }
-            });
+            });*/
             
     }else {
         return generateHTML(name,url,json,exist,"Keine Informationen verfügbar.")
     }}else return generateHTML(name,url,json,exist,"");
 }
-function checkURL(lurl, splitarray){
-    console.log("Checks url")
-
+function checkURL(lurl){
+    
     try {
+        let slash=lurl.split("/");
+        let dot=slash[2].split(".")
         const myURL = new URL(lurl);
         console.log(lurl);
-        if(splitarray[1]==="wikipedia" && splitarray[2]==="org"){
+        if(dot[1]==="wikipedia" && dot[2]==="org"){
             return true;
         }else return false;
         
     } catch (error) {
-        console.log(`${Date().toString()}: ${error.input} is not a valid url`);
-        console.log( res.status(400).send(`${error.input} is not a valid url`));
+        console.log(lurl);
         return false;
     }
+}
+String.prototype.replaceAt = function(index, replacement) {
+    return this.substr(0, index) + replacement + this.substr(index + replacement.length);
 }
