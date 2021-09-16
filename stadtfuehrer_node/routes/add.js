@@ -10,7 +10,7 @@ app.use(express.urlencoded( {extended: true} )); // because Error: 'body-parser 
 
 const url = 'mongodb://localhost:27017' // connection URL
 const client = new MongoClient(url) // mongodb client
-const dbName = 'mainDB' // database name
+const dbName = 'stadtfuehrerDB' // database name
 const collectionName = 'pois' // collection name
 const gjv = require("geojson-validation");
 

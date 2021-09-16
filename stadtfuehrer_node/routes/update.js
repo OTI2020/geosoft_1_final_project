@@ -10,7 +10,7 @@ app.use(express.urlencoded( {extended: true} )); // because Error: 'body-parser 
 //MongoConnect
 //-------------->>>>Hier muss die passende Datenbank und die passende Collection angegeben werden!!!!!<<<<--------------
 const url = 'mongodb://localhost:27017' // connection URL
-const dbName = 'mainDB' // database name
+const dbName = 'stadtfuehrerDB' // database name
 const collectionName = 'pois' // collection name
 //----------------------------------------------------------------------------------------------------------------------
 const MongoClient = require('mongodb').MongoClient;
