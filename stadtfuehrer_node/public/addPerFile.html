@@ -9,7 +9,7 @@
     <!--_____LEAFLET DRAW CSS_____-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css"/>
     <!--_____OWN CSS_____-->
-    <link rel="stylesheet" href="css/sights_config.css"/>
+    <link rel="stylesheet" href="css/stylesheet.css"/>
     <link rel="stylesheet" href="css/headerFooterCustom.css">
     <!--_____LEAFLET JAVASCRIPT_____-->
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
@@ -39,7 +39,7 @@
                         <a class="nav-link text-light  rounded" href="index.html">Übersicht</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light active rounded" href="sights_config.html">Sehenswürdigkeiten verwalten</a>
+                        <a class="nav-link text-light rounded" href="sights_config.html">Sehenswürdigkeiten verwalten</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-light rounded" href="#">Routen verwalten</a>
@@ -56,18 +56,21 @@
                 </h1>
                 <p>
                     Hier können Sehenswürdigkeiten zum Bestand hinzugefügt werden.<br>
-                    Fügen Sie dazu einfach GeoJSON-Code einer Punkt- oder einer Polygongeometrie in das Textfeld ein,
+                    Fügen Sie dazu einfach den GeoJSON-Code einer Punkt- oder einer Polygongeometrie in das Textfeld ein,
                     oder laden Sie eine entsprechende Datei hoch.
                 </p>
             </div>
-            <div id="fileUpload" class=" col col-12 rounded  text-center mb-2">
+            <div id="fileUpload" class=" col col-12 rounded  text-center input-group mb-3">
+                <input type="file" id="file-input" class="form-control form-control-lg"/>
+                <div class="input-group-append">
+                    <button id="read-button" class="btn btn-secondary">Datei verwenden</button>
+                </div>
                 <script src="js/addFile.js"></script>
                 <script src="js/leafletData.js"></script>
-                <input type="file" id="gjsonUpload"/>
             </div>
             <div id="fileAddContent" class=" col col-12 rounded text-center"></div>  
                 <form action="/add/newpoi" method='post' class='form-horizontal' role='form'>
-                    <div class='form-group'><input type='text' class="form-control" name='pjson'placeholder="GeoJSON-Code"/></div>
+                    <div class='form-group'><input type='text' id="jsonText" class="form-control" name='pjson'placeholder="GeoJSON-Code"/></div>
                     <div class='form-group'><input type='text' class="form-control" name='pname' placeholder="Name des POI"/></div>
                     <div class='form-group'><input type='text' class="form-control" name='purl' placeholder="Wikipedia-URL"/></div>
                     <div class='form-group'><button id="gjsonSubmit" class="btn btn-secondary" type="submit" name="action" value="addFile">Zur Karte Hinzufügen</button></div>                
