@@ -5,7 +5,7 @@ const assert = require('assert');
 
 //Here we are configuring express to use body-parser as middle-ware
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded( {extended: true} ));
 
 //MongoConnect
 //-------------->>>>Hier muss die passende Datenbank und die passende Collection angegeben werden!!!!!<<<<--------------

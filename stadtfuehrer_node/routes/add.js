@@ -6,7 +6,7 @@ const app = express();
 
 //Here we are configuring express to use body-parser as middle-ware
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded( {extended: true} ));
 
 const url = 'mongodb://localhost:27017' // connection URL
 const client = new MongoClient(url) // mongodb client
