@@ -50,7 +50,7 @@
         
         <!-- MAIN CONTENT-->
         <div id="contentFrame" class="d-flex justify-content-center flex-wrap align-items-center p-5">
-            <div id="textContent" class=" col col-lg-3 col-12 rounded text-lg-left">
+            <div id="textContent" class=" col col-12 rounded text-center">
                 <h1> 
                     Hinzufügen von POIs per GeoJSON Datei.
                 </h1>
@@ -60,18 +60,17 @@
                     oder laden Sie eine entsprechende Datei hoch.
                 </p>
             </div>
-            <div id="fileUpload" class=" col col-lg-7 col-12 rounded  text-center text-lg-left">
+            <div id="fileUpload" class=" col col-12 rounded  text-center mb-2">
                 <script src="js/addFile.js"></script>
                 <script src="js/leafletData.js"></script>
                 <input type="file" id="gjsonUpload"/>
             </div>
-            <div id="fileAddContent" class=" col col-lg-5 col-12 rounded text-lg-left"></div>  
-                
+            <div id="fileAddContent" class=" col col-12 rounded text-center"></div>  
                 <form action="/add/newpoi" method='post' class='form-horizontal' role='form'>
-                    <div class='form-group'><input type='text' name='pjson'placeholder="GeoJSON-Code"/></div>
-                    <div class='form-group'><input type='text' name='pname' placeholder="Name des POI"/></div>
-                    <div class='form-group'><input type='text' name='purl' placeholder="Wikipedia-URL"/></div>
-                    <div class='form-group'><button id="gjsonSubmit" class="btn btn-primary pupBtn" type="submit" name="action" value="addFile">Zur Karte Hinzufügen</button></div>                
+                    <div class='form-group'><input type='text' class="form-control" name='pjson'placeholder="GeoJSON-Code"/></div>
+                    <div class='form-group'><input type='text' class="form-control" name='pname' placeholder="Name des POI"/></div>
+                    <div class='form-group'><input type='text' class="form-control" name='purl' placeholder="Wikipedia-URL"/></div>
+                    <div class='form-group'><button id="gjsonSubmit" class="btn btn-secondary" type="submit" name="action" value="addFile">Zur Karte Hinzufügen</button></div>                
                 </form>
             </div>
             

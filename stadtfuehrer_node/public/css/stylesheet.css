@@ -45,19 +45,11 @@ body {
         box-shadow: none;
     }
   }
-
-table, tr, th{
-    border: 1px solid black;
-    border-collapse: collapse;
-    margin-top: 0.3rem;
+.even{
+    background-color: rgb(12, 55, 90,0.5);
+    padding: 0.2rem;
 }
-th{
-    padding: 0.5rem;
+.odd{
+    background-color: rgba(12, 55, 90,0.2);
+    padding: 0.2rem;
 }
-#popupTable tr:nth-child(even){background-color: rgb(12, 55, 90,0.5);}
-#popupTable tr:nth-child(odd){background-color: rgba(12, 55, 90,0.2);}
-#popupButton{
-    background-color:rgba(12, 55, 90,0.2);
-    margin-top: 0.5rem;
-}
-

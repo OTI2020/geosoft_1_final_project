@@ -22,8 +22,7 @@
     <!--_____TURF.JS JAVASCRIPT_____-->
     <script src='https://unpkg.com/@turf/turf@6.3.0/turf.min.js'></script>
     <!-- BOOTSTRAP SOURCES-->
-            
-
+    <script src="js/wikipedia-data.js"></script>  
         </head>
 
         <body>
@@ -50,30 +49,13 @@
             </nav>
             <!--Main Content-->
             <div id="contentFrame" class="d-flex justify-content-center flex-wrap align-items-center p-5">
-                <div id="textContent" class=" col col-lg-3 col-12 rounded text-lg-left">
+                <div id="textContent" class=" col col-lg-4 col-12 rounded text-center">
                     <h1> Sehenswürdigkeiten in Münster</h1>
                     <div id="introduction">                
-                        <div id="input_textfield">
-                            <p> Create your own polygon in a GeoJSON-format. <p>
-                            <a href="https://geojson.io/" target="_blank"> Create your own lineString </a>      
-                        </div>
-                        
-                        <div id="input_textfield">
-                            <p> This text field is for insetring your own GeoJSON-Polygon<br /> 
-                                (only own Polygon als Feature in a FeatureCollection) </p>
-                            <textarea id="textField" rows="6" cols="40"></textarea>
-                        </div>
-
-                        <div id="input_button">
-                            <p> Let the programm run with your input! </p> 
-                            <button type="button" onclick="get_input()">Submit</button>
-                        </div>
                     </div>  
                 </div>
-                
-            <div class="col col-lg-1 col-0"></div>
             <div id="mapid" class="col col-lg-8 col-12 border border-dark rounded align-self-lg-end"></div>
-            <script src="js/leaflet-basemap.js"></script>
+            <script src="js/indexSideMap.js"></script>
         </div>
         </div>
         <!-- FOOTER-->

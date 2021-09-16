@@ -21,7 +21,6 @@ router.post('/newpoi', function(req, res, next)
   poi.poiname = req.body.pname
   poi.json= req.body.pjson
   poi.link = req.body.purl
-  if (req.body.action!=="update"){
     console.log("Test1")
     // calling validation method from author: https://github.com/mapbox/geojsonhint
     try{
@@ -61,7 +60,6 @@ router.post('/newpoi', function(req, res, next)
       })
       
     })
-  }
 });
 
 module.exports = router;
