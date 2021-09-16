@@ -6,11 +6,11 @@ const port = 3000;
 
 const url = 'mongodb://localhost:27017'
 const client = new MongoClient(url)
-const dbName = 'mainDB'
+const dbName = 'stadtfuererDB'
 const collectionName = 'pois'
 //Parser for Request
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded( {extended: true} )); // because Error: 'body-parser deprecated undefined extended'
 
 //Routers
 var searchRouter = require('./routes/search.js'); //require search router
