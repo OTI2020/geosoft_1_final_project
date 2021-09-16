@@ -42,12 +42,9 @@ getDatafromDB();
 // Listener to catch when a shape is drawn onto the map
     mymap.on(L.Draw.Event.CREATED, function (event) {
         var layer = event.layer;
-        drawnItems.addLayer(layer);
         let geoJSONObj=layer.toGeoJSON();
         let geoJSONStr=JSON.stringify(geoJSONObj)
-        console.log(geoJSONStr);
-        let form_popup = fillPopupHTML("","",geoJSONStr, 0)
-            drawnItems.bindPopup(form_popup).openPopup();
+        fillPopupHTML("","",geoJSONStr, 0,layer);
     })
 
 // Listener to catch when a shape is deleted from the map

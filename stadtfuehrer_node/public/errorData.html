@@ -22,8 +22,6 @@
     <!--_____TURF.JS JAVASCRIPT_____-->
     <script src='https://unpkg.com/@turf/turf@6.3.0/turf.min.js'></script>
     <!-- BOOTSTRAP SOURCES-->
-    <script src="js/wikipedia-data.js"></script>
-            <script src="js/leafletData.js"></script>
 
 </head>
 <body>
@@ -52,20 +50,17 @@
         
         <!-- MAIN CONTENT-->
         <div id="contentFrame" class="d-flex justify-content-center flex-wrap align-items-center p-5">
-            <div id="textContent" class=" col col-lg-3 col-12 rounded text-lg-left">
+            <div id="textContent" class=" col col-12 rounded text-center">
                 <h1> 
-                    Verwaltung von Points of Interest.
+                    Ups! Da hat etwas nicht geklappt.
                 </h1>
                 <p>
-                    Hier können Sehenswürdigkeiten zum Bestand hinzugefügt,<br>
-                    bearbeitet oder gelöscht werden. Klicken Sie dazu einfach auf die Karte.
-                    Alternativ können Sie eine entsprechende Datei hochladen.
+                    Wie es aussieht, ist die von Ihnen angegebene GeoJSON-Struktur fehlerhaft,</br>
+                    oder enthält eine nicht unterstützte Geometrie. Es werden nur vollständige </br>
+                    GeoJSON vom Typ "Point" und "Polygon" unterstützt.
                 </p>
-                <form action="addPerFile.html" ><button type="submit" class="btn btn-secondary">Datei hochladen</button></form>
+                <a href="sights_config.html" class="btn btn-secondary stretched-link">Zurück zur Übersicht</a>
             </div>
-            <div class="col col-lg-1 col-0"></div>
-            <div id="mapid" class="col col-lg-8 col-12 border border-dark rounded align-self-lg-end"></div><br>
-            <script src="js/leafletMain.js"></script>
         </div>
     </div>
         <!-- FOOTER-->

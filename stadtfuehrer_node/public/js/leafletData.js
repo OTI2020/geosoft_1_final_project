@@ -1,5 +1,5 @@
-function fillPopupHTML(name, url, json, exist){
-    return getWikipediaData(name,url,json,exist);
+function fillPopupHTML(name, url, json, exist, layer){
+     return getWikipediaData(name,url,json,exist, layer);
 }
    
 function getDatafromDB() { 
@@ -17,8 +17,7 @@ function getDatafromDB() {
                 let json=res[i].json
                 let resGeoJSON = JSON.parse(json);
                 var  layer = L.geoJSON(resGeoJSON);
-                markerLayer.addLayer(layer);
-                layer.bindPopup(fillPopupHTML(res[i].poiname, res[i].link, json, 1));
+                fillPopupHTML(res[i].poiname, res[i].link, json, 1,layer)
             }
         })
         .fail(function(xhr, status, errorThrown) { //if the request fails (for some reason)
@@ -29,7 +28,7 @@ function getDatafromDB() {
         })
     }
 } 
-function generateHTML(name,url,json,exist,description){
+function generateHTML(name,url,json,exist,description,layer){
     console.log("html generated");
     let Lname=name;
     let Lurl=url;
@@ -40,13 +39,11 @@ function generateHTML(name,url,json,exist,description){
     let describetxt;
     let delbtn;
     if(exist==0){
-        console.log("exist ist 0")
         pathstr="/add/newpoi";
         btntxt="Speichern";
         describehtml="";
         delbtn="";
     }else if(exist==1){
-        console.log("exist ist 1")
         pathstr="/update/poi";
         btntxt="Aktualisieren";
         describetxt=description;
@@ -71,6 +68,12 @@ function generateHTML(name,url,json,exist,description){
         "</fieldset>"+
         "<button class='btn btn-primary' type='submit' name='action' value='update'>"+btntxt+"</button>"+delbtn+
     "</form>";
-    console.log(htmlString+"______________Exist ist"+exist)
-    return htmlString;
+    if(exist==0){
+        drawnItems.addLayer(layer);
+        drawnItems.bindPopup(htmlString).openPopup();
+    }else{
+        markerLayer.addLayer(layer);
+        layer.bindPopup(htmlString);
+    }
 }
+
