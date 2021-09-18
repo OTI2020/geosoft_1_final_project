@@ -14,6 +14,7 @@ app.use(express.urlencoded( {extended: true} )); // because Error: 'body-parser 
 
 //Routers
 var searchRouter = require('./routes/search.js'); //require search router
+var search_tourRouter = require('./routes/search_tour.js'); //require search router
 var addRouter = require('./routes/add.js'); //require add router
 var add_tourRouter = require('./routes/add_tour.js'); //require add router
 var updateRouter = require('./routes/update.js'); //require update router
@@ -21,6 +22,7 @@ var deleteRouter = require('./routes/delete.js'); //requiredelete router
 
 //Usages (mainly routers)
 app.use('/search', searchRouter);
+app.use('/search_tour', search_tourRouter);
 app.use('/add', addRouter);
 app.use('/add_tour', add_tourRouter);
 app.use('/update', updateRouter);
