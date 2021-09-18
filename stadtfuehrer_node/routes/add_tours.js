@@ -43,6 +43,4 @@ router.post('/newtour', function(req, res, next) {
   })
 });
     
-    
-
 module.exports = router;
