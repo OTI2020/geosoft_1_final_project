@@ -55,36 +55,42 @@
         <div id="contentFrame" class="d-flex justify-content-center flex-wrap align-items-center p-5">
             <div id="textContent" class=" col col-12 rounded text-center">
                 <h1> 
-                    Hinzufügen von POIs per GeoJSON Datei.
+                    Hinzufügen einer Tour per JSON-Datei.
                 </h1>
                 <p>
-                    Hier können Sehenswürdigkeiten zum Bestand hinzugefügt werden.<br>
-                    Fügen Sie dazu einfach den GeoJSON-Code einer Punkt- oder einer Polygongeometrie in das Textfeld ein,
+                    Hier können Sie eine neue Tour zum Bestand hinzugefügt werden.<br>
+                    Fügen Sie dazu den JSON-Code, wie im Screenshot zu sehen, in das Textfeld ein,
                     oder laden Sie eine entsprechende Datei hoch.
                 </p>
             </div>
-            <div id="fileUpload" class=" col col-12 rounded  text-center input-group mb-3">
-                <input type="file" id="file-input" class="form-control form-control-lg"/>
+            <div>
+                <img src="gfx/Screenshot_HowToJSON.png" width="200" >
+            </div>
+
+            <!-- Upload -->
+            <div id="tour-fileUpload" class=" col col-12 rounded  text-center input-group mb-3">
+                <input type="file" id="tour-file-input" class="form-control form-control-lg"/>
                 <div class="input-group-append">
-                    <button id="poi-read-button" class="btn btn-secondary">Datei verwenden</button>
+                    <button id="tour-read-button" class="btn btn-secondary">Datei verwenden</button>
                 </div>
                 <script src="js/addFile.js"></script>
                 <script src="js/leafletData.js"></script>
             </div>
-            <div id="fileAddContent" class=" col col-12 rounded text-center"></div>  
-                <form action="/add/newpoi" method='post' class='form-horizontal' role='form'>
-                    <div class='form-group'><input type='text' id="jsonText" class="form-control" name='pjson'placeholder="GeoJSON-Code"/></div>
-                    <div class='form-group'><input type='text' class="form-control" name='pname' placeholder="Name des POI"/></div>
-                    <div class='form-group'><input type='text' class="form-control" name='purl' placeholder="Wikipedia-URL"/></div>
-                    <div class='form-group'><button id="gjsonSubmit" class="btn btn-secondary" type="submit" name="action" value="addFile">Zur Karte Hinzufügen</button></div>                
-                </form>
-            </div>
-            <div class=" col col-12 rounded text-center mt-4"><a href="index.html" class="btn btn-secondary">Startseite</a></div>
-            
 
+            <!-- save written Code -->
+            <div id="tourFileAddContent" class=" col col-12 rounded text-center"> 
+                <form action="/add/newtour" method='post' class='form-horizontal' role='form'>
+                    <div class='form-group'><input type='text' id="tour-jsonText" class="form-control" name='t_json'placeholder="JSON-Code"/></div>
+                    <div class='form-group'><button id="tour-json-Submit" class="btn btn-secondary" type="submit" name="action" value="addFile">JSON zur Datenbank Hinzufügen</button></div>                
+                </form>
+            </div> 
+            <div class=" col col-12 rounded text-center mt-4"><a href="index.html" class="btn btn-secondary">Startseite</a></div>
         </div>
     </div>
-        <!-- FOOTER-->
+
+
+
+    <!-- FOOTER-->
         <footer id="myFooter" class="row col col-12 bg-dark d-flex flex-column align-items-left">
                 <div class="row col col-12 d-flex flex-column ">
                     <p><b>Links</b><br>
