@@ -95,24 +95,5 @@ if (document.querySelector("#poi-read-button")) {
   });
 
 
-
-  // save json in mongoDB Collection for tours
-
-  var MongoClient = require('mongodb').MongoClient, format = require('util').format;
-
-
-  MongoClient.connect('mongodb://127.0.0.1:27017/tours', function(err,db) {
-    if (err) throw err;
-    console.log("Connected to Database");
-
-    // insert record
-    db.collection('tours').insert(tour_json_text, function(err, records) {
-        if (err) throw err;
-        console.log("Record added as " + records[0]._id);
-      });
-  });
-
-
-
 // 2. else-case: no button
 } else console.log("nothing - no button was used")
