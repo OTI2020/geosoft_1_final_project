@@ -43,7 +43,6 @@ function getIndexDatafromDB() {
  }
 } 
 function generateIndexHTML(name,url,json,description,layer){
-  console.log("html generated");
   let Lname=name;
   let Lurl=url;
   let Ljson=json;
@@ -65,7 +64,7 @@ function generateIndexHTML(name,url,json,description,layer){
               "<input type='hidden' name='pjson' readonly='readonly' value='"+Ljson+"'/>"+
           "</div>"+
       "</fieldset>"+
-  "</form>";
+  "</form><button id='weatherStart' onclick='weathercalc('"+Ljson+"')' class='btn btn-secondary'>Nächste Bushaltestelle</button>";
     markerLayer.addLayer(layer);
     layer.bindPopup(htmlString);
   
