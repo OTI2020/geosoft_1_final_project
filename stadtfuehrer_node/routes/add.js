@@ -21,7 +21,6 @@ router.post('/newpoi', function(req, res, next)
   poi.poiname = req.body.pname
   poi.json= req.body.pjson
   poi.link = req.body.purl
-    console.log("Test1")
     // calling validation method from author: https://github.com/mapbox/geojsonhint
     try{
       input=JSON.parse(req.body.pjson)
@@ -38,7 +37,6 @@ router.post('/newpoi', function(req, res, next)
       res.redirect("/errorData.html");
       return false;
     }
-    
     // connect to the mongodb database and afterwards, insert one the new element
     client.connect(function(err) 
     {
