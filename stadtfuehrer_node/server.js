@@ -16,7 +16,7 @@ app.use(express.urlencoded( {extended: true} )); // because Error: 'body-parser 
 var searchRouter = require('./routes/search.js'); //require search router
 var search_tourRouter = require('./routes/search_tour.js'); //require search router
 var addRouter = require('./routes/add.js'); //require add router
-var add_tourRouter = require('./routes/add_tour.js'); //require add router
+var add_tourRouter = require('./routes/add_tours.js'); //require add router
 var updateRouter = require('./routes/update.js'); //require update router
 var deleteRouter = require('./routes/delete.js'); //requiredelete router
 
@@ -33,9 +33,9 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/node_modules'));
 
 //Gets
-app.get("/weatherData", (req, res) => { res.sendFile(__dirname + "/public/uebung_6_weather.html"); });
-app.get("/manageRoutes", (req, res) => { res.sendFile(__dirname + "/public/uebung_6_manage.html"); });
 app.get("/home", (req, res) => { res.sendFile(__dirname + "/public/index.html"); });
+app.get("/editPOI", (req, res) => { res.sendFile(__dirname + "/public/sights_config.html"); });
+
 
 //Listener
 app.listen(port, () => {

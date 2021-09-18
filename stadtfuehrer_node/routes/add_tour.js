@@ -20,6 +20,12 @@ router.post('/newtour', function(req, res, next) {
   tour.json = req.body.t_json
   console.log("Test1" + req.body.t_json)
 
+  //catching empty input
+  if(tour.json==""){
+    console.log("empty JSON");
+    res.redirect("/errorData.html");
+    return false;
+  }
   // connect to the mongodb database and afterwards, insert one the new element
   client.connect(function(err) 
   {
@@ -43,6 +49,4 @@ router.post('/newtour', function(req, res, next) {
   })
 });
     
-    
-
 module.exports = router;
