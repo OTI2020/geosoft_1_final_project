@@ -1,0 +1,43 @@
+[{
+  "_id": {
+    "$oid": "61421db25c77200be0189efe"
+  },
+  "poiname": "St.Paulus Dom",
+  "json": "{\"type\":\"Feature\",\"properties\":{},\"geometry\":{\"type\":\"Point\",\"coordinates\":[7.625703,51.963076]}}",
+  "link": "https://de.wikipedia.org/wiki/St.-Paulus-Dom_(M%C3%BCnster)"
+},{
+  "_id": {
+    "$oid": "61421dfc5c77200be0189eff"
+  },
+  "poiname": "Allwetterzoo Münster(Westfalen)",
+  "json": "{\"type\":\"Feature\",\"properties\":{},\"geometry\":{\"type\":\"Polygon\",\"coordinates\":[[[7.591209,51.948854],[7.591209,51.948854],[7.592733,51.948894],[7.592733,51.948894],[7.59505,51.948048],[7.59505,51.948048],[7.595243,51.94732],[7.595243,51.94732],[7.592905,51.944715],[7.592905,51.944715],[7.590587,51.944397],[7.590587,51.944397],[7.588849,51.944807],[7.588849,51.944807],[7.588334,51.94523],[7.588334,51.94523],[7.58666,51.945654],[7.58666,51.945654],[7.585416,51.947347],[7.585416,51.947347],[7.584665,51.94773],[7.584665,51.94773],[7.586961,51.948206],[7.586961,51.948206],[7.587733,51.948339],[7.587733,51.948339],[7.589171,51.947955],[7.589171,51.947955],[7.5899,51.948021],[7.5899,51.948021],[7.590437,51.947955],[7.590437,51.947955],[7.590072,51.948458],[7.590072,51.948458],[7.590308,51.948868],[7.590308,51.948868],[7.591231,51.948841],[7.591209,51.948854]]]}}",
+  "link": "https://de.wikipedia.org/wiki/Allwetterzoo_M%C3%BCnster"
+},{
+  "_id": {
+    "$oid": "61421e415c77200be0189f00"
+  },
+  "poiname": "GEO 1",
+  "json": "{\"type\":\"Feature\",\"properties\":{},\"geometry\":{\"type\":\"Point\",\"coordinates\":[7.595796,51.969439]}}",
+  "link": "https://www.uni-muenster.de/Geoinformatics/"
+},{
+  "_id": {
+    "$oid": "614311d9a1d64884f0e333a0"
+  },
+  "poiname": "Sentruper Höhe",
+  "json": "{\"type\":\"Feature\",\"properties\":{},\"geometry\":{\"type\":\"Point\",\"coordinates\":[7.60005,51.96225]}}",
+  "link": "www.youtube.com"
+},{
+  "_id": {
+    "$oid": "614325183df70e777479ef34"
+  },
+  "poiname": "Schloss Münster",
+  "json": "{\"type\":\"Feature\",\"properties\":{},\"geometry\":{\"type\":\"Point\",\"coordinates\":[7.613442,51.963567]}}",
+  "link": "https://de.wikipedia.org/wiki/F%C3%BCrstbisch%C3%B6fliches_Schloss_M%C3%BCnster"
+},{
+  "_id": {
+    "$oid": "6143856479c37569f48d6557"
+  },
+  "poiname": "Stadion Münster",
+  "json": "{\"type\":\"FeatureCollection\",\"features\":[{\"type\":\"Feature\",\"properties\":{},\"geometry\":{\"type\":\"Point\",\"coordinates\":[7.657175660133361,51.957513173548456]}}]}",
+  "link": "https://de.wikipedia.org/wiki/Preu%C3%9Fenstadion"
+}]
