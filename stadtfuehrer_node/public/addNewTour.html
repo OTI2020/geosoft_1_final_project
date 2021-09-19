@@ -67,17 +67,16 @@
                 <img src="gfx/Screenshot_HowToJSON.png" width="200" >
             </div>
 
-            <!-- Upload -->
+            <!-- to upload file -->
             <div id="tour-fileUpload" class=" col col-12 rounded  text-center input-group mb-3">
                 <input type="file" id="tour-file-input" class="form-control form-control-lg"/>
                 <div class="input-group-append">
                     <button id="tour-read-button" class="btn btn-secondary">Datei verwenden</button>
                 </div>
                 <script src="js/addFile.js"></script>
-                <script src="js/leafletData.js"></script>
             </div>
 
-            <!-- save written Code -->
+            <!-- to save written Code -->
             <div id="tourFileAddContent" class=" col col-12 rounded text-center"> 
                 <form action="/add_tour/newtour" method='post' class='form-horizontal' role='form'>
                     <div class='form-group'><input type='text' id="tour-jsonText" class="form-control" name='t_json'placeholder="JSON-Code"/></div>
