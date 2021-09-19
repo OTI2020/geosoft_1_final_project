@@ -6,13 +6,13 @@ const assert = require('assert');
 //-------------->>>>Hier muss die passende Datenbank und die passende Collection angegeben werden!!!!!<<<<--------------
 const url = 'mongodb://localhost:27017' // connection URL
 const dbName = 'stadtfuehrerDB' // database name
-const collectionName = 'tours' // collection name
+const tour_collectionName = 'tours' // collection name
 //----------------------------------------------------------------------------------------------------------------------
 const MongoClient = require('mongodb').MongoClient //Client for MongoDB
 const client = new MongoClient(url) // mongodb client
 
 //get Documents
-router.get('/', function(req, res, next) 
+router.get('/searchTour', function(req, res, next) 
 {
   //Connect to the mongodb database and retrieve all docs
   client.connect(function(err) 
@@ -20,7 +20,7 @@ router.get('/', function(req, res, next)
     assert.strictEqual(null, err);
   
     const db = client.db(dbName); //Database
-    const collection = db.collection(collectionName); //Collection
+    const collection = db.collection(tour_collectionName); //Collection
 
     // Find all documents
     var result = [];
