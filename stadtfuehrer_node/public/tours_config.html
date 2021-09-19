@@ -60,26 +60,70 @@
                     Verwaltung von Stadttouren.
                 </h1>
                 <p>
-                    Hier können Stadttouren konfigurieren, d.h. <br>
-                    ... Hinzufügen von Touren, Bearbeitet oder Löschung.
-                    Dies geschieht auf Grundlage der bereits vorhandenen Pois.
+                    Hier können Stadttouren konfigurieren.
                 </p>
-                <form action="addNewTour.html" ><button type="submit" class="btn btn-secondary">Neue Tour hinzufügen</button></form>
-                <br>
-                <form action="changeTours.html" ><button type="submit" class="btn btn-secondary">Bestehende Touren bearbeiten</button></form>
-            </div>
-            <div class="col col-lg-1 col-0"></div>
-
-            <div id="tableFrame">
-                <table id="table_1">
-                    <tr>
-                        <th>Pois Nr.</th>
-                        <th>Sehenswürdigkeit</th>
-                    </tr>
-                </table>
+                <form action="addNewTour.html" ><button type="submit" class="btn btn-secondary">Neue Tour per File hinzufügen</button></form>
             </div>
 
+
+            <!--add Tour-->
+            <div id="addTourWithPoisCollection" class="border">
+                <h5>Erstellung neuer Tour</h5>
+                <form action="/add_tour/newTourManuel" method="post" id="addTourForm">
+                    <label for="tourName" >Name der Tour: </label><br>
+                    <input type="text" placeholder="Tourname" id="tourName" name="tourName"><br>
+                    <input type="hidden" id="poisName" name="poisName"><br>
+                </form>
+                <h>Auswählen der Sehenswürdigkeiten auf der Tour: </h><br>
+                <button onclick="" class="btn btn-secondary">Hinzufügen der Tour</button>
+            </div>
+            <br>
+
+
+            <!--update Tours -->
+            <div id="updateTours" class="border">
+                <h5><b>Änderung einer Tour</b></h5>
+                <h>zu ändernde Tour:</h>
+                <select class="form-select"  id="selectTourToUpdate" onchange="">
+                    <option value="">--Please choose an option--</option>                        
+                </select><br>
+                <select class="form-select"  id="selectPoisToDeleteFromTour">
+                    <option value="">--Please choose an option--</option>
+                </select>
+                <button onclick="" class="btn btn-secondary">Diese Sehenswürdigkeit aus der Tour löschen</button><br>
+                <select class="form-select"  id="selectPoisToAddToTour">
+                    <option value="">--Please choose an option--</option>
+                </select>
+                <button onclick="" class="btn btn-secondary">Hinzufügen einer Sehenswürdigkeit zu einer Tour</button> <br>
+                <form action="/update" method="post">
+                    <label for="name">ggf. neuer Tourname:</label>
+                    <input type="hidden" id="existingTourName" name="existingTourName"><br>
+                    <input type="text" id="newTourName" name="newTourName"><br> 
+                    <input type="submit" class="btn btn-secondary" value="Updaten der Tour">
+                    <input type="hidden" id="newPois" name="newPois">
+                </form>
+                <p id="poisList"></p>
+            </div>
+            <br>
+
+
+            <!--delete Tours-->
+            <div id="deleteTours" class="border ">
+                <h5><b>Löschen einer Tour</b></h5>
+                <select class="form-select" id="selectTourToDelete" onchange="">
+                    <option value="">--Please choose an option--</option>
+                </select><br>
+                <form action="/delete" method="post">
+                    <input type="hidden" id="TourNameToDelete" name="TourNameToDelete"></input>
+                    <input type="submit" class="btn btn-secondary" value="Löschen der Tour"></input>
+                </form>
+            </div>
         </div>
+        <!--
+        <div class="col col-lg-1 col-0"></div>
+        <div id="mapid" class="col col-lg-8 col-12 border border-dark rounded align-self-lg-end"></div><br>
+        <script src="js/leafletMain.js"></script>
+        -->
     </div>
 
 
