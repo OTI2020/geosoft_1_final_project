@@ -18,12 +18,12 @@ router.post('/newtour', function(req, res, next) {
   console.log("A new tour has been added")
   let tour = {}
   tour.json = req.body.t_json
-  console.log("Test1" + req.body.t_json)
+  console.log("Test2")
 
   //catching empty input
   if(tour.json==""){
     console.log("empty JSON");
-    res.redirect("/errorData.html");
+    res.redirect("/errorData_tour.html");
     return false;
   }
   // connect to the mongodb database and afterwards, insert one the new element
@@ -41,7 +41,7 @@ router.post('/newtour', function(req, res, next) {
     {
       assert.equal(err, null)
       assert.equal(1, result.result.ok)
-      console.log(result)
+      // console.log(result)
       console.log(`Inserted ${result.insertedCount} document into the collection`)
       res.redirect('/tours_config.html')
     })
