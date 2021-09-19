@@ -55,37 +55,37 @@ function showInformation(json) {
 				var lonSight;
 				var latSight;	
 				if(sightJSONObj.type=="Feature"){
-					lonSight=sightJSONObj.geometry.coordinates[1];
-					latSight=sightJSONObj.geometry.coordinates[0];
+					lonSight=sightJSONObj.geometry.coordinates[0];
+					latSight=sightJSONObj.geometry.coordinates[1];
 				}else if(sightJSONObj.type=="FeatureCollection"){
-					lonSight=sightJSONObj.features[0].geometry.coordinates[1];
-					latSight=sightJSONObj.features[0].geometry.coordinates[0];
+					lonSight=sightJSONObj.features[0].geometry.coordinates[0];
+					latSight=sightJSONObj.features[0].geometry.coordinates[1];
 				}else{
 					console.log("invalid JSON type");
 					return false;
 				}
-				console.log(lonSight,latSight)
+				let shortestDist=10000000000000;
+				let bestStoppLat;
+				let bestStoppLng;
+				let bestStoppName;
 				for(i=0; i< arr3.length; i ++) {					
-					var xAxes = arr3[i].geometry.coordinates[1];
-					var yAxes = arr3[i].geometry.coordinates[0];
+					var currlng = arr3[i].geometry.coordinates[0];
+					var currlat = arr3[i].geometry.coordinates[1];
 					
 					var from = turf.point([latSight, lonSight]);
-					var to = turf.point([xAxes, yAxes]);
+					var to = turf.point([currlat, currlng]);
 					var options = {units: 'kilometers'};
-					var distance = turf.distance(from, to, options);
-					h[i] = distance;
-					k[i] = distance;
+					var currdistance = turf.distance(from, to, options);
+					
+					if(currdistance<shortestDist){
+						shortestDist=currdistance;
+						bestStoppLat=currlat;
+						bestStoppLng=currlng;
+						bestStoppName=arr3[i].properties.lbez;
+					}
 				} 
-				h.sort(function(a, b){return a - b});
-				//console.log(h);
-				var nearest = h[0];
-				var indexOfNearest = k.indexOf(nearest);
-				console.log("Index of: " + indexOfNearest); //Testzwecke
-				var nextStopName = arr3[indexOfNearest].properties.lbez;
-				var lat = arr3[indexOfNearest].geometry.coordinates[1];
-				var lng = arr3[indexOfNearest].geometry.coordinates[0];
-				var nearestInMeters = nearest*1000;
-				startApiReqWeather(lat,lng,nextStopName,nearestInMeters);
+				let roundedDistance=Math.floor(shortestDist*1000);
+				startApiReqWeather(bestStoppLat,bestStoppLng,bestStoppName,roundedDistance);		
 		}
 	}
 	xhr.send();
