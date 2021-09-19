@@ -14,6 +14,12 @@
  * @type Leaflet Layer
  */
     let markerLayer = new L.layerGroup().addTo(mymap);
+
+/**
+ * Layer for later addition of markers
+ * @type Leaflet Layer
+ */
+ let stoppsLayer = new L.layerGroup().addTo(mymap);
 getIndexDatafromDB();
 
 function fillIndexPopupHTML(name, url, json, layer){
@@ -43,7 +49,6 @@ function getIndexDatafromDB() {
  }
 } 
 function generateIndexHTML(name,url,json,description,layer){
-  console.log("html generated");
   let Lname=name;
   let Lurl=url;
   let Ljson=json;
@@ -65,10 +70,9 @@ function generateIndexHTML(name,url,json,description,layer){
               "<input type='hidden' name='pjson' readonly='readonly' value='"+Ljson+"'/>"+
           "</div>"+
       "</fieldset>"+
-  "</form>";
+  "</form><button onclick='showInformation("+Ljson+")' class='btn btn-secondary'>Nächste Haltestelle</button>";
     markerLayer.addLayer(layer);
     layer.bindPopup(htmlString);
-  
 }
 let maxindexSnippetLength=250;
 function getIndexWikipediaData(name,url,json,layer){
@@ -94,3 +98,31 @@ function getIndexWikipediaData(name,url,json,layer){
             return generateIndexHTML(name,url,json,"Keine Informationen verfügbar.", layer)
         }
 }
+
+function generateStopMarker(weatherJSON,name,distance,lat,lng){
+    stoppsLayer.clearLayers();
+    const myCustomColour = '#1c781f'
+
+    const markerHtmlStyles = `
+    background-color: ${myCustomColour};
+    width: 3rem;
+    height: 3rem;
+    display: block;
+    left: -1.5rem;
+    top: -1.5rem;
+    position: relative;
+    border-radius: 3rem 3rem 0;
+    transform: rotate(45deg);
+    border: 1px solid #FFFFFF`
+
+    const icon = L.divIcon({
+    className: "my-custom-pin",
+    iconAnchor: [0, 24],
+    labelAnchor: [-6, 0],
+    popupAnchor: [0, -36],
+    html: `<span style="${markerHtmlStyles}" />`
+    })
+  
+    let stopHtml="<p><b>"+name+"</b></br>Distanz: "+distance+"</p>";
+    L.marker([lat, lng], {icon: icon}).addTo(stoppsLayer).bindPopup(stopHtml).openPopup();;
+  }
