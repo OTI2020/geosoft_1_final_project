@@ -25,7 +25,9 @@ getTourDatafromDB()
 
 // console.log(JSON.parse(tours_array[0].json).tourName)
 
-
+/**
+ * @function fillSelectTour
+ */
 function fillSelectTour() {
     for (var i=0; i<tours_array.length; i++) {
         var z = document.createElement("option");
@@ -42,19 +44,24 @@ fillSelectTour()
 
 
 /**
+ * triggerd onclick - see tours_config.html
  * @function selectTourForDelete - function adds a tour to be deleted to the the deleteTour form
  */
- function selectTourForDelete() {
-    console.log("tours_array test_2");
-    console.log(tours_array.length);
-
-
-   var value = document.getElementById("selectTourToDelete").value; //get value from toggler
-   for(var i = 0; i < tours_array.length; i++) { //iterate over forms 
-       if(tours_array[i].tourName == value) { //if criteria are met
-           document.getElementById('TourNameToDelete').value = tours_array[i].tourName; //add tourID to form
-       }
-   }
+function selectTourForDelete() {
+    console.log("selectTour onchange -> Tour to delete");
+    var value = document.getElementById("selectTour").value; //get value from toggler
+    // console.log(document.getElementById("selectTour").value)
+    let i = 0
+    while (i < tours_array.length) { //iterate over forms 
+        if(JSON.parse(tours_array[i].json).tourName == value) { //if criteria are met
+            document.getElementById('TourNameToDelete').value = JSON.parse(tours_array[i].json).tourName //add tourID to form
+            // console.log(document.getElementById('TourNameToDelete').value) //add tourID to form
+            i=tours_array.length
+        } else {
+            i++ 
+            console.log("iteration");
+            }
+    }
 }
 
 
@@ -63,7 +70,7 @@ fillSelectTour()
 
 var pois_array
 /*
-* @function getDatafromDB - retrieve all tours from mongoDB tour-Collection
+* @function getDatafromDB - retrieve all pois from mongoDB tour-Collection
 */
 function getPoisDatafromDB() { 
     {$.ajax({ //handle request via ajax
