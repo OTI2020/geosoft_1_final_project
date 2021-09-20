@@ -32,6 +32,9 @@ function fillIndexPopupHTML(name, url, json, layer){
   return getIndexWikipediaData(name,url,json, layer);
 }
 
+/**
+ * get pois from database for index site
+ */
 function getIndexDatafromDB() { 
  {$.ajax({ //handle request via ajax
      url: "/search", //request url is the prebuild request
@@ -54,6 +57,14 @@ function getIndexDatafromDB() {
      })
  }
 } 
+/**
+ * generates the Html code for the marker popups on index.html
+ * @param {*} name 
+ * @param {*} url 
+ * @param {*} json 
+ * @param {*} description 
+ * @param {*} layer 
+ */
 function generateIndexHTML(name,url,json,description,layer){
   let Lname=name;
   let Lurl=url;
@@ -81,6 +92,14 @@ function generateIndexHTML(name,url,json,description,layer){
     layer.bindPopup(htmlString);
 }
 let maxindexSnippetLength=250;
+/**
+ * Gets data from Wikipedia API and starts indexhtml popup generation
+ * @param {*} name 
+ * @param {*} url 
+ * @param {*} json 
+ * @param {*} layer 
+ * @returns 
+ */
 function getIndexWikipediaData(name,url,json,layer){
         let urlexists=checkURL(url);
         if(urlexists==true){
@@ -105,6 +124,14 @@ function getIndexWikipediaData(name,url,json,layer){
         }
 }
 
+/**
+ * Creates colored Marker on map depending which tour is selected
+ * @param {*} weatherJSON 
+ * @param {*} name 
+ * @param {*} distance 
+ * @param {*} lat 
+ * @param {*} lng 
+ */
 function generateStopMarker(weatherJSON,name,distance,lat,lng){
     stoppsLayer.clearLayers();
     const myCustomColour = '#1c781f'
@@ -205,6 +232,7 @@ function visualizeTour(data){
         let mlng;
         let jsonObj=JSON.parse(data[i].json);
         console.log(jsonObj)
+        // catching possible structure differences
         if(jsonObj.type=="Feature"){
             let coordinates = jsonObj.geometry.coordinates;
             if(jsonObj.geometry.type=="Point"){
