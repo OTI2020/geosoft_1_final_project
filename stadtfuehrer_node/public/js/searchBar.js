@@ -1,6 +1,5 @@
 //GeoJSON Daten zum Testen des Autocompletes
-let geojson = 
-
+/*let geojsonlcl = 
 { "type": "FeatureCollection",
 "features": [
 { "type": "Feature",
@@ -84,7 +83,7 @@ let geojson =
 "link2": "https://live.staticflickr.com/65535/44337291772_f78486053b_n.jpg"      }
 }
 ]
-}
+}*/
 
 //Soll die lokale TestJSON ersetzen
 function getPoiNamesfromDB() { 
@@ -94,11 +93,15 @@ function getPoiNamesfromDB() {
         })
         .done(function(res) {
             console.dir(res)
+            var currName=[];
             for(let i = 0; i < res.length; i++) {
-                var currName=res[i].poiname
-                let resGeoJSON = JSON.parse(currName);
+                currName.push(res[i].poiname);
+                //let resGeoJSON = JSON.stringify(currName);
+                //JSON.parse(resGeoJSON);
                // fillPopupHTML(res[i].poiname, res[i].link, json, 1,layer)
+               
             }
+            searchThrough(currName);
         })
         .fail(function(xhr, status, errorThrown) { //if the request fails (for some reason)
             console.log("Request has failed!", '/n', "Status: " + status, '/n', "Error: " + errorThrown); //we log a message on the console
@@ -107,22 +110,22 @@ function getPoiNamesfromDB() {
             console.log("Request completed"); //a short message is logged
         })
     }
-    searchThrough(resGeoJSON);
+    
 }
 
 
 function searchThrough(resGeoJSON){
     //Die JSON-Objekte abrufen
-    let poisOnMap = resGeoJSON
+    let poisOnMap = resGeoJSON;
     //Teste über Konsole, ob JSON-Objekte übergeben werden
-    //console.log("Dies ist eine Testzeile" + poisOnMap)
+    console.log("Dies ist eine Testzeile" + poisOnMap)
     
     //Die POI Namen abrufen
     //let poiNames = resGeoJSON
     //console.log(poiNames)
     
     //Beim Ausfüllen Autocomplete verwenden
-    $( "#poisOnMap").autocomplete({
+    $("poisOnMap").autocomplete({
         //Start nach Anzahl der Zeichen festlegen
         minLength: 1,
         //Die Datenquelle für Autocomplete festlegen

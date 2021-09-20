@@ -31,9 +31,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
     <!--_____jQuery UI_____-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
-
     <!--_____searchBar JAVA SCRIPT_____-->
-    <script async src="searchBar.js"></script>
+    <script src="js/searchBar.js"></script>
     
         </head>
 
@@ -69,11 +68,12 @@
                     <div id="introduction">                
                     </div>
                     <input  id="poisOnMap" type="search" placeholder="Search POI name..." aria-label="Search">
+                    
+                    <script type="text/javascript">getPoiNamesfromDB();</script>
                 </div>
             <div id="mapid" class="col col-lg-8 col-12 border border-dark rounded align-self-lg-end"></div>
             <script src="js/busInfo.js"></script>
             <script src="js/indexSideMap.js"></script>
-            <script src="js/searchBar.js"></script>
         </div>
         </div>
         <!-- FOOTER-->
