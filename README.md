@@ -23,6 +23,9 @@ also docker, but sadly it does not work complitely
 ## Funktionality
 update and delete tours is not possible
 
+file with apikey in gitignore
+
+
 ### References
 * http://turfjs.org/docs/#lineIntersect
 * https://leafletjs.com/examples.html
