@@ -1,5 +1,3 @@
-var pois = document.getElementById("poisOnMap");
-
 //GeoJSON Daten zum Testen des Autocompletes
 let geojson = 
 
@@ -91,12 +89,12 @@ let geojson =
 
 
 //Die JSON-Objekte abrufen
-let pois = geojson.features
+let poisOnMap = geojson.features
 //Teste über Konsole, ob JSON-Objekte übergeben werden
-console.log(pois)
+console.log(poisOnMap)
 
 //Die POI Namen abrufen
-let poiNames = pois.map(function(el){
+let poiNames = poisOnMap.map(function(el){
     return el.properties.poiname
 })
 console.log(poiNames)
@@ -108,11 +106,11 @@ $( "#poisOnMap").autocomplete({
     //Start nach Anzahl der Zeichen festlegen
     minLength: 1,
     //Die Datenquelle für Autocomplete festlegen
-    source: poiNames,
+    source: poiNames, //Hier anpassen Get Request
     select: function(event, ui){
         this.value = ui.item.value
         
-        let details = pois.filter(function (el){
+        let details = poisOnMap.filter(function (el){
             return el.properties.poiname === ui.item.value
         })
         return false

@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
 
     <!--_____searchBar JAVA SCRIPT_____-->
-    <script src="searchBar.js"></script>
+    <script async src="searchBar.js"></script>
     
         </head>
 
@@ -63,15 +63,17 @@
             <div id="contentFrame" class="d-flex justify-content-center flex-wrap align-items-center p-5">
                 <div id="textContent" class=" col col-lg-4 col-12 rounded text-center">
                     <h1> Sehenswürdigkeiten in Münster</h1>
-                    <div id="SearchRow">
+                    <!--<div id="SearchRow">
                         <input  id="poisOnMap" type="search" placeholder="Search POI name..." aria-label="Search">
-                    </div>
+                    </div>-->
                     <div id="introduction">                
-                    </div>  
+                    </div>
+                    <input  id="poisOnMap" type="search" placeholder="Search POI name..." aria-label="Search">
                 </div>
             <div id="mapid" class="col col-lg-8 col-12 border border-dark rounded align-self-lg-end"></div>
             <script src="js/busInfo.js"></script>
             <script src="js/indexSideMap.js"></script>
+            <script src="js/searchBar.js"></script>
         </div>
         </div>
         <!-- FOOTER-->
