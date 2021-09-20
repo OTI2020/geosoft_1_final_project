@@ -15,7 +15,7 @@ function getAllfromDB() {
            pois_array = res[0]; //store locations in locations array
            tours_array = res[1]; //store tours in tours_array
        },
-    }
+       )}
 }
 getAllfromDB();
 */
