@@ -110,10 +110,10 @@
             <!--delete Tours-->
             <div id="deleteTours" class="border ">
                 <h5><b>Löschen einer Tour</b></h5>
-                <select class="form-select" id="selectTourToDelete" onchange="">
+                <select class="form-select" id="selectTourToDelete" onchange="selectTourForDelete()">
                     <option value="">--Please choose an option--</option>
                 </select><br>
-                <form action="/delete" method="post">
+                <form action="/delete/removeTour" method="post">
                     <input type="hidden" id="TourNameToDelete" name="TourNameToDelete"></input>
                     <input type="submit" class="btn btn-secondary" value="Löschen der Tour"></input>
                 </form>
