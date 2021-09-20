@@ -87,9 +87,20 @@ let geojson =
 }
 
 
-
+//Soll die lokale TestJSON ersetzen
+function getDatafromDB() { 
+    {$.ajax({ //handle request via ajax
+        url: "/search", //request url is the prebuild request
+        method: "GET", //method is GET since we want to get data not post or update it
+        })
+        .done(function(res) {
+            console.dir(res)
+            for(let i = 0; i < res.length; i++) {
+                let json=res[i].json
+                let resGeoJSON = JSON.parse(json);
+               // fillPopupHTML(res[i].poiname, res[i].link, json, 1,layer)
 //Die JSON-Objekte abrufen
-let poisOnMap = geojson.features
+let poisOnMap = resGeoJSON
 //Teste über Konsole, ob JSON-Objekte übergeben werden
 console.log(poisOnMap)
 
@@ -116,3 +127,14 @@ $( "#poisOnMap").autocomplete({
         return false
     }
 })
+            }
+        })
+        .fail(function(xhr, status, errorThrown) { //if the request fails (for some reason)
+            console.log("Request has failed!", '/n', "Status: " + status, '/n', "Error: " + errorThrown); //we log a message on the console
+        })
+        .always(function(xhr, status) { //if the request is "closed", either successful or not 
+            console.log("Request completed"); //a short message is logged
+        })
+    }
+ } 
+
