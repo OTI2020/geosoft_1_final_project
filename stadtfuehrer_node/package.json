@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "nodemon server.js"
   },
   "dependencies": {
     "ajax": "0.0.4",
