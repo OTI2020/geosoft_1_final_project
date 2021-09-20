@@ -14,6 +14,12 @@
  * @type Leaflet Layer
  */
     let markerLayer = new L.layerGroup().addTo(mymap);
+
+/**
+ * Layer for later addition of markers
+ * @type Leaflet Layer
+ */
+ let stoppsLayer = new L.layerGroup().addTo(mymap);
 getIndexDatafromDB();
 
 function fillIndexPopupHTML(name, url, json, layer){
@@ -64,10 +70,9 @@ function generateIndexHTML(name,url,json,description,layer){
               "<input type='hidden' name='pjson' readonly='readonly' value='"+Ljson+"'/>"+
           "</div>"+
       "</fieldset>"+
-  "</form><button id='weatherStart' onclick='weathercalc('"+Ljson+"')' class='btn btn-secondary'>Nächste Bushaltestelle</button>";
+  "</form><button onclick='showInformation("+Ljson+")' class='btn btn-secondary'>Nächste Haltestelle</button>";
     markerLayer.addLayer(layer);
     layer.bindPopup(htmlString);
-  
 }
 let maxindexSnippetLength=250;
 function getIndexWikipediaData(name,url,json,layer){
@@ -92,4 +97,75 @@ function getIndexWikipediaData(name,url,json,layer){
         }else {
             return generateIndexHTML(name,url,json,"Keine Informationen verfügbar.", layer)
         }
+}
+
+function generateStopMarker(weatherJSON,name,distance,lat,lng){
+    stoppsLayer.clearLayers();
+    const myCustomColour = '#1c781f'
+
+    const markerHtmlStyles = `
+    background-color: ${myCustomColour};
+    width: 3rem;
+    height: 3rem;
+    display: block;
+    left: -1.5rem;
+    top: -1.5rem;
+    position: relative;
+    border-radius: 3rem 3rem 0;
+    transform: rotate(45deg);
+    border: 1px solid #E5E500`
+
+    const icon = L.divIcon({
+    className: "my-custom-pin",
+    iconAnchor: [0, 24],
+    labelAnchor: [-6, 0],
+    popupAnchor: [0, -36],
+    html: `<span style="${markerHtmlStyles}" />`
+    })
+    
+    let localtime = convertTimes(weatherJSON.current.dt);
+    let temprature = Math.round(weatherJSON.current.temp);
+    let localWeatherSub = weatherJSON.current.weather[0].description;
+    let weathericon = getIconUrl(weatherJSON.current.weather[0].icon);
+    let stopHtml="<p><b>"+name+"</b></br>Distanz: "+distance+" Meter</br>Wetter ("+localtime+" Uhr): "+localWeatherSub+"</br><img src="+weathericon+"></br>Temperatur: "+temprature+"</p>";
+    L.marker([lat, lng], {icon: icon}).addTo(stoppsLayer).bindPopup(stopHtml).openPopup();;
+  }
+  /**
+ * takes id from icon in weather JSON file and chooses fitting URL
+ * @param {*} id string
+ * @returns 
+ */
+function getIconUrl(id){
+    switch (id){
+        case "01d": return "http://openweathermap.org/img/wn/01d@2x.png";
+        case "02d": return "http://openweathermap.org/img/wn/02d@2x.png";
+        case "03d": return "http://openweathermap.org/img/wn/03d@2x.png";
+        case "04d": return "http://openweathermap.org/img/wn/04d@2x.png";
+        case "09d": return "http://openweathermap.org/img/wn/09d@2x.png";
+        case "10d": return "http://openweathermap.org/img/wn/10d@2x.png";
+        case "11d": return "http://openweathermap.org/img/wn/11d@2x.png";
+        case "13d": return "http://openweathermap.org/img/wn/13d@2x.png";
+        case "50d": return "http://openweathermap.org/img/wn/50d@2x.png";
+        case "01n": return "http://openweathermap.org/img/wn/01n@2x.png";
+        case "02n": return "http://openweathermap.org/img/wn/02n@2x.png";
+        case "03n": return "http://openweathermap.org/img/wn/03n@2x.png";
+        case "04n": return "http://openweathermap.org/img/wn/04n@2x.png";
+        case "09n": return "http://openweathermap.org/img/wn/09n@2x.png";
+        case "10n": return "http://openweathermap.org/img/wn/10n@2x.png";
+        case "11n": return "http://openweathermap.org/img/wn/11n@2x.png";
+        case "13n": return "http://openweathermap.org/img/wn/13n@2x.png";
+        case "50n": return "http://openweathermap.org/img/wn/50n@2x.png";
+        default:return "";
+    }
+}
+/**
+ * Takes a unix timestemp to convert it to normal time format
+ * @param {*} unixTime unix timestemp
+ * @returns human readable time format
+ */
+ function convertTimes(unixTime){
+    let unix = unixTime;
+    let unixMilli = unix * 1000;
+    let dateObject = new Date(unixMilli);
+    return dateObject.toLocaleTimeString([],{hour: '2-digit', minute:'2-digit'});
 }
