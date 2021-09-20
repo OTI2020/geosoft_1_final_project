@@ -34,11 +34,10 @@ router.post('/newtour', function(req, res, next) {
         let nameSave="nameSave"+i;
         let currName=req.body[nameSave];
         let currJson=req.body[checkName];
-        let jsonString='"comment":{"poiname":{"'+currName+'"},"json":'+currJson+'}';
-        let jsonStringify=JSON.stringify(jsonString);
+        let jsonString={poiname:currName,json:currJson};
 
         //adding JSON Object to DB Document
-        selPois.push(JSON.parse(jsonStringify));
+        selPois.push(jsonString);
         tour.items=selPois;
       }
   }

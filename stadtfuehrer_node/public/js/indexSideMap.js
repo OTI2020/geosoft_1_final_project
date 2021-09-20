@@ -20,6 +20,12 @@
  * @type Leaflet Layer
  */
  let stoppsLayer = new L.layerGroup().addTo(mymap);
+
+ /**
+ * Layer for later addition of markers
+ * @type Leaflet Layer
+ */
+  let toursLayer = new L.layerGroup().addTo(mymap);
 getIndexDatafromDB();
 
 function fillIndexPopupHTML(name, url, json, layer){
@@ -168,4 +174,64 @@ function getIconUrl(id){
     let unixMilli = unix * 1000;
     let dateObject = new Date(unixMilli);
     return dateObject.toLocaleTimeString([],{hour: '2-digit', minute:'2-digit'});
+}
+
+function visualizeTour(data){
+    toursLayer.clearLayers();
+    const myCustomColour = '#8403fc'
+
+    const markerHtmlStyles = `
+    background-color: ${myCustomColour};
+    width: 3rem;
+    height: 3rem;
+    display: block;
+    left: -1.5rem;
+    top: -1.5rem;
+    position: relative;
+    border-radius: 3rem 3rem 0;
+    transform: rotate(45deg);
+    border: 1px solid #E5E500`
+
+    const icon = L.divIcon({
+    className: "my-custom-pin",
+    iconAnchor: [0, 24],
+    labelAnchor: [-6, 0],
+    popupAnchor: [0, -36],
+    html: `<span style="${markerHtmlStyles}" />`
+    })
+    
+    for(i=0; i<data.length;i++){
+        let mlat;
+        let mlng;
+        let jsonObj=JSON.parse(data[i].json);
+        console.log(jsonObj)
+        if(jsonObj.type=="Feature"){
+            let coordinates = jsonObj.geometry.coordinates;
+            if(jsonObj.geometry.type=="Point"){
+                mlat=coordinates[1];
+                mlng=coordinates[0];
+            }else if(jsonObj.geometry.type=="Polygon"){
+                let polygoncoords =coordinates[0][0];
+                mlat=polygoncoords[1];
+                mlng=polygoncoords[0]
+            }
+        }else if(jsonObj.type=="FeatureCollection"){
+            let coordinates = jsonObj.features[0].geometry.coordinates;
+            if(jsonObj.features[0].geometry.type=="Point"){
+                mlat=coordinates[1];
+                mlng=coordinates[0];
+            }else if(jsonObj.features[0].geometry.type=="Polygon"){
+                let polygoncoords =coordinates[0][0];
+                mlat=polygoncoords[1];
+                mlng=polygoncoords[0]
+            }
+        }else{
+            console.log("invalid JSON type");
+            return false;
+        }
+        let tourhtml="<p><b>"+data[i].poiname+"</b></p>"
+       
+        console.log(mlat,mlng);
+        L.marker([mlat, mlng], {icon: icon}).addTo(toursLayer).bindPopup(tourhtml).openPopup();;
+    }
 }

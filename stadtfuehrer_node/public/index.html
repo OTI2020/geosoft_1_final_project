@@ -56,11 +56,11 @@
                 <p>Wählen Sie die gewünschte Tour</p>
                 <div id="introduction">                
                 </div>  
-                <select class="form-select"  id="indexSelect" onchange="">
+                <select class="form-select"  id="indexSelect" onchange="fillMap()">
                     <option value="">--Please choose an option--</option>                        
                 </select>
                 <script src="js/indexTours.js"></script>
-                <script type="text/javascript">getIndexTourDataFromDB();</script>
+                <script type="text/javascript">getIndexTourDatafromDB();</script>
             </div>
             <div id="mapid" class="col col-lg-8 col-12 border border-dark rounded align-self-lg-end"></div>
             <script src="js/busInfo.js"></script>
