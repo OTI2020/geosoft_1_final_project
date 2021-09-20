@@ -1,6 +1,6 @@
 var x = document.getElementById("informationDisplay"); //making a shorter reference with x
 var y = document.getElementById("informationControlDisplay"); //""
-const weatherApi = "585d734d0729ad19d27a80778f9a59ee"; //insert here your Api-Key as a constant
+const weatherApi = ""; //insert here your Api-Key as a constant
 var reqTerm = ""; //placeholder for the later compound expression (Api Request)
 var lat = 0; //{float} stores the determined coordinates (latitude)
 var lng = 0; //{float} stores the determined coordinates (longitude)
