@@ -20,7 +20,7 @@ function getAllfromDB() {
 getAllfromDB();
 */
 
-var response;
+var tour_response;
 function getDatafromDB() { 
     {$.ajax({ //handle request via ajax
         url: "/search_tour/getCollection", //request url is the prebuild request
@@ -30,9 +30,7 @@ function getDatafromDB() {
             //bind a popupto the given marker / the popupt is formatted in HTML and 
             //is enriched with information extracted from the api response
             //console.log(response[0].geojson.features[0]);
-            response = res;
-            console.log("response of getDatafromDB():");
-            console.log(response);
+            tour_response = res;
         })
         .fail(function(xhr, status, errorThrown) { //if the request fails (for some reason)
             console.log("Request has failed!", '/n', "Status: " + status, '/n', "Error: " + errorThrown); //we log a message on the console
