@@ -59,7 +59,8 @@
                     Hinzufügen einer Tour.
                 </h1>
                 <p>
-                    Hier können Sie eine neue Tour zum Bestand hinzugefügt werden.
+                    Hier können Sie eine neue Tour zum Bestand hinzufügen.</br>
+                    Wählen Sie hierzu einen beliebigen Namen und wählen Sie mindestens eine Sehenswürdigkeit aus.
                 </p>
             </div>
 
@@ -69,11 +70,12 @@
                     <div class='form-group'>
                         <input type='text' id="tour-jsonText" class="form-control" name='tourname'placeholder="Routenname"/>
                     </div>
-                    <div id="checkDiv">
+                    <div id="checkDiv" class="text-left">
+                        <h3>Sehenswürdigkeiten</h3>
                         <input type='hidden' id="tour-count" class="form-control" name='count' display/>
                         <script src="js/addNewRoute.js"></script>
                         <script type="text/javascript">createCheckList();</script>
-                    </div>
+                    </div></br>
                     <div class='form-group'>
                         <button id="tour-json-Submit" class="btn btn-secondary" type="submit" name="action" value="addFile">Tour hinzufügen</button>
                     </div>                

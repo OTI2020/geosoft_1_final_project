@@ -1,13 +1,25 @@
+/**
+ * Returns result from getWikipediaData, used to avoid async problems
+ * @param {*} name 
+ * @param {*} url 
+ * @param {*} json 
+ * @param {*} exist 
+ * @param {*} layer 
+ * @returns 
+ */
 function fillPopupHTML(name, url, json, exist, layer){
     return getWikipediaData(name,url,json,exist, layer);
 }
   
+/**
+ * Starts ajax request to get pois from DB, starts fillPopupHTML
+ */
 function getDatafromDB() { 
    {$.ajax({ //handle request via ajax
        url: "/search", //request url is the prebuild request
        method: "GET", //method is GET since we want to get data not post or update it
        })
-       .done(function(res) {
+       .done(function(res) { // if request successful
            console.dir(res)
            for(let i = 0; i < res.length; i++) {
                let json=res[i].json
@@ -19,11 +31,18 @@ function getDatafromDB() {
        .fail(function(xhr, status, errorThrown) { //if the request fails (for some reason)
            console.log("Request has failed!", '/n', "Status: " + status, '/n', "Error: " + errorThrown); //we log a message on the console
        })
-       .always(function(xhr, status) { //if the request is "closed", either successful or not 
-           console.log("Request completed"); //a short message is logged
-       })
    }
 } 
+
+/**
+ * Generate HTML string for popups on the poi configuration page
+ * @param {*} name 
+ * @param {*} url 
+ * @param {*} json 
+ * @param {*} exist 
+ * @param {*} description 
+ * @param {*} layer 
+ */
 function generateHTML(name,url,json,exist,description,layer){
    console.log("html generated");
    let Lname=name;
@@ -34,11 +53,15 @@ function generateHTML(name,url,json,exist,description,layer){
    let describehtml;
    let describetxt;
    let delbtn;
+
+   // options if the marker doesnt exist. In that case we only need a save button
    if(exist==0){
        pathstr="/add/newpoi";
        btntxt="Speichern";
        describehtml="";
        delbtn="";
+
+   // options if the marker exists. Now we need an update and delete button
    }else if(exist==1){
        pathstr="/update/poi";
        btntxt="Aktualisieren";
@@ -47,6 +70,7 @@ function generateHTML(name,url,json,exist,description,layer){
        delbtn="&nbsp;&nbsp;<button class='btn btn-danger' type='submit' name='action' value='delete'>Löschen</button>";
    }
 
+   // complete HTML string with parameters depending of use case
    let htmlString="<form action='"+pathstr+"' method='post' class='form-horizontal' role='form'>"+
        "<fieldset>"+
            "<div class='form-group odd'>"+
@@ -64,6 +88,8 @@ function generateHTML(name,url,json,exist,description,layer){
        "</fieldset>"+
        "<button class='btn btn-primary' type='submit' name='action' value='update'>"+btntxt+"</button>"+delbtn+
    "</form>";
+
+   // adding popups on different layers depending on exists
    if(exist==0){
        drawnItems.addLayer(layer);
        drawnItems.bindPopup(htmlString).openPopup();
