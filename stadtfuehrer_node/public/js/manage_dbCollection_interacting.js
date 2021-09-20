@@ -7,9 +7,12 @@ function getDatafromDB() {
     {$.ajax({ //handle request via ajax
         url: "/search_tour/getCollection", //request url is the prebuild request
         method: "GET", //method is GET since we want to get data not post or update it
+        async: true
         })
         .done(function(res) { //if the request is done -> successful
             tours_array = res; //store tours in tours_array
+            console.log("stored tours in tours_array!!!");
+            console.log(tours_array);
         })
         .fail(function(xhr, status, errorThrown) { //if the request fails (for some reason)
             console.log("Request has failed!", '/n', "Status: " + status, '/n', "Error: " + errorThrown); //we log a message on the console
@@ -17,6 +20,8 @@ function getDatafromDB() {
         .always(function(xhr, status) { //if the request is "closed", either successful or not 
             console.log("Request completed"); //a short message is logged
         })
+        console.log("tours_array test_0");
+        console.log(tours_array);
     }
 }   
 getDatafromDB()
