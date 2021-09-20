@@ -86,7 +86,6 @@ let geojson =
 ]
 }
 
-
 //Soll die lokale TestJSON ersetzen
 function getPoiNamesfromDB() { 
     {$.ajax({ //handle request via ajax
@@ -105,9 +104,7 @@ let poisOnMap = resGeoJSON
 console.log("Dies ist eine Testzeile" + poisOnMap)
 
 //Die POI Namen abrufen
-let poiNames = poisOnMap.map(function(el){
-    return el.poiname
-})
+let poiNames = res.poiname
 console.log(poiNames)
 
 
