@@ -25,12 +25,15 @@ router.get('/', function(req, res, next)
     const collection = db.collection(poisCollectionName); //Collection
 
     // Find all documents
-    var result = [];
     collection.find({}).toArray(function(err, docs) 
     {
       assert.strictEqual(err, null);
       res.json(docs); //return documents from Database
+      // console.log("> > > result of pois search:");
+      // console.log(typeof docs);
     })
   })
 });
 module.exports = router; //export as router
+
+
