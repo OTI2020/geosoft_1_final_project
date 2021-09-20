@@ -99,9 +99,9 @@ function getPoiNamesfromDB() {
                 let resGeoJSON = JSON.parse(json);
                // fillPopupHTML(res[i].poiname, res[i].link, json, 1,layer)
 //Die JSON-Objekte abrufen
-let poisOnMap = resGeoJSON
+let poisOnMap = res.poiname
 //Teste über Konsole, ob JSON-Objekte übergeben werden
-console.log("Dies ist eine Testzeile" + poisOnMap)
+//console.log("Dies ist eine Testzeile" + poisOnMap)
 
 //Die POI Namen abrufen
 let poiNames = res.poiname
