@@ -18,14 +18,28 @@ router.post('/newtour', function(req, res, next) {
   // JSON.stringify(req.body)
   console.log("A new tour has been added")
   let tour = {}
-  tour.json = req.body.t_json
-  console.log("Test2")
+  tour.tourname = req.body.tourname
+  tour.items=0;
+  let count=req.body.count
+  let selPois = [];
 
   //catching empty input
-  if(tour.json==""){
-    console.log("empty JSON");
+  if(tour.tourname==""){
+    console.log("empty Name");
     res.redirect("/errorData_tour.html");
     return false;
+  }
+  for(let i=0; i<count;i++){
+    let checkName="check"+i;
+      if(req.body[checkName]){
+        let nameSave="nameSave"+i;
+        let currName=req.body[nameSave];
+        let currJson=req.body[checkName];
+        let jsonString='"comment":{"poiname":{"'+currName+'"},"json":'+currJson+'}';
+        let jsonStringify=JSON.stringify(jsonString);
+        selPois.push(JSON.parse(jsonStringify));
+        tour.items=selPois;
+      }
   }
   // connect to the mongodb database and afterwards, insert one the new element
   client.connect(function(err) 
@@ -42,8 +56,6 @@ router.post('/newtour', function(req, res, next) {
     {
       assert.equal(err, null)
       assert.equal(1, result.result.ok)
-      // console.log(result)
-      console.log(`Inserted ${result.insertedCount} document into the collection`)
       res.redirect('/tours_config.html')
     })
     

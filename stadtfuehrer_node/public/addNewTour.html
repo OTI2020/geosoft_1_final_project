@@ -22,6 +22,7 @@
     <!--_____TURF.JS JAVASCRIPT_____-->
     <script src='https://unpkg.com/@turf/turf@6.3.0/turf.min.js'></script>
     <!-- BOOTSTRAP SOURCES-->
+    
 
 </head>
 <body>
@@ -55,32 +56,27 @@
         <div id="contentFrame" class="d-flex justify-content-center flex-wrap align-items-center p-5">
             <div id="textContent" class=" col col-12 rounded text-center">
                 <h1> 
-                    Hinzufügen einer Tour per JSON-Datei.
+                    Hinzufügen einer Tour.
                 </h1>
                 <p>
-                    Hier können Sie eine neue Tour zum Bestand hinzugefügt werden.<br>
-                    Fügen Sie dazu den JSON-Code, wie im Screenshot zu sehen, in das Textfeld ein,
-                    oder laden Sie eine entsprechende Datei hoch.
+                    Hier können Sie eine neue Tour zum Bestand hinzugefügt werden.
                 </p>
-            </div>
-            <div>
-                <img src="gfx/Screenshot_HowToJSON.png" width="200" >
-            </div>
-
-            <!-- to upload file -->
-            <div id="tour-fileUpload" class=" col col-12 rounded  text-center input-group mb-3">
-                <input type="file" id="tour-file-input" class="form-control form-control-lg"/>
-                <div class="input-group-append">
-                    <button id="tour-read-button" class="btn btn-secondary">Datei verwenden</button>
-                </div>
-                <script src="js/addFile.js"></script>
             </div>
 
             <!-- to save written Code -->
             <div id="tourFileAddContent" class=" col col-12 rounded text-center"> 
                 <form action="/add_tour/newtour" method='post' class='form-horizontal' role='form'>
-                    <div class='form-group'><input type='text' id="tour-jsonText" class="form-control" name='t_json'placeholder="JSON-Code"/></div>
-                    <div class='form-group'><button id="tour-json-Submit" class="btn btn-secondary" type="submit" name="action" value="addFile">JSON zur Datenbank Hinzufügen</button></div>                
+                    <div class='form-group'>
+                        <input type='text' id="tour-jsonText" class="form-control" name='tourname'placeholder="Routenname"/>
+                    </div>
+                    <div id="checkDiv">
+                        <input type='hidden' id="tour-count" class="form-control" name='count' display/>
+                        <script src="js/addNewRoute.js"></script>
+                        <script type="text/javascript">createCheckList();</script>
+                    </div>
+                    <div class='form-group'>
+                        <button id="tour-json-Submit" class="btn btn-secondary" type="submit" name="action" value="addFile">Tour hinzufügen</button>
+                    </div>                
                 </form>
             </div> 
             <div class=" col col-12 rounded text-center mt-4"><a href="index.html" class="btn btn-secondary">Startseite</a></div>
