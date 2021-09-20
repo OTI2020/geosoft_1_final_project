@@ -70,17 +70,19 @@
             <div id="updateTours" class="border">
                 <h5>Tour löschen oder ändern</h5>
                 <h>zu ändernde Tour:</h>
-                <select class="form-select"  id="selectTour" onchange="">
+                <select class="form-select"  id="selectTour" onchange="selectTourForDelete()">
                     <option value="">--Please choose an option--</option>                        
                 </select><br>
 
                 <!--delete Poi from Tour-->
+                <div style="height: 5px;"></div>
                 <select class="form-select"  id="selectPoisToDeleteFromTour">
                     <option value="">--Please choose an option--</option>
                 </select>
                 <button onclick="" class="btn btn-secondary">Diese Sehenswürdigkeit aus der Tour löschen</button><br>
                 
                 <!--add Poi from Tour-->
+                <div style="height: 5px;"></div>
                 <select class="form-select"  id="selectPoisToAddToTour">
                     <option value="">--Please choose an option--</option>
                 </select>
@@ -90,31 +92,24 @@
                 <form action="/update" method="post">
                     <label for="name">ggf. neuer Tourname:</label>
                     <input type="hidden" id="existingTourName" name="existingTourName"><br>
-                    <input type="text" id="newTourName" name="newTourName"><br> 
-                    <input type="submit" class="btn btn-secondary" value="Updaten der Tour">
+                    <input type="text" id="newTourName" name="newTourName"><br>
+                    <div style="height: 5px;"></div>
+                    <input type="submit" class="btn btn-secondary" value="Tour updaten">
                     <input type="hidden" id="newPois" name="newPois">
                 </form>
 
                 <!--delete Tours-->
-                <form action="/delete/removeTour" method="post">
+                <div style="height: 5px;"></div>
+                <form action="/delete_tour/removeTour" method="post">
                     <input type="hidden" id="TourNameToDelete" name="TourNameToDelete"></input>
-                    <input type="submit" class="btn btn-secondary" value="Löschen der Tour"></input>
+                    <input type="submit" class="btn btn-secondary" value="Tour löschen"></input>
                 </form>
             </div>
             <br>
 
-<!--
-            <div id="deleteTours" class="border ">
-                <h5><b>Löschen einer Tour</b></h5>
-                <select class="form-select" id="selectTourToDelete" onchange="selectTourForDelete()">
-                    <option value="">--Please choose an option--</option>
-                </select><br>
-                <form action="/delete/removeTour" method="post">
-                    <input type="hidden" id="TourNameToDelete" name="TourNameToDelete"></input>
-                    <input type="submit" class="btn btn-secondary" value="Löschen der Tour"></input>
-                </form>
-            </div>
--->
+
+                
+
         </div>
 
         <!--
