@@ -95,35 +95,9 @@ function getPoiNamesfromDB() {
         .done(function(res) {
             console.dir(res)
             for(let i = 0; i < res.length; i++) {
-                let json=res[i].json
-                let resGeoJSON = JSON.parse(json);
+                var currName=res[i].poiname
+                let resGeoJSON = JSON.parse(currName);
                // fillPopupHTML(res[i].poiname, res[i].link, json, 1,layer)
-//Die JSON-Objekte abrufen
-let poisOnMap = res.poiname
-//Teste über Konsole, ob JSON-Objekte übergeben werden
-//console.log("Dies ist eine Testzeile" + poisOnMap)
-
-//Die POI Namen abrufen
-let poiNames = res.poiname
-console.log(poiNames)
-
-
-
-//Beim Ausfüllen Autocomplete verwenden
-$( "#poisOnMap").autocomplete({
-    //Start nach Anzahl der Zeichen festlegen
-    minLength: 1,
-    //Die Datenquelle für Autocomplete festlegen
-    source: poiNames, //Hier anpassen Get Request
-    select: function(event, ui){
-        this.value = ui.item.value
-        
-        let details = poisOnMap.filter(function (el){
-            return el.properties.poiname === ui.item.value
-        })
-        return false
-    }
-})
             }
         })
         .fail(function(xhr, status, errorThrown) { //if the request fails (for some reason)
@@ -133,5 +107,33 @@ $( "#poisOnMap").autocomplete({
             console.log("Request completed"); //a short message is logged
         })
     }
- } 
+    searchThrough(resGeoJSON);
+}
 
+
+function searchThrough(resGeoJSON){
+    //Die JSON-Objekte abrufen
+    let poisOnMap = resGeoJSON
+    //Teste über Konsole, ob JSON-Objekte übergeben werden
+    //console.log("Dies ist eine Testzeile" + poisOnMap)
+    
+    //Die POI Namen abrufen
+    //let poiNames = resGeoJSON
+    //console.log(poiNames)
+    
+    //Beim Ausfüllen Autocomplete verwenden
+    $( "#poisOnMap").autocomplete({
+        //Start nach Anzahl der Zeichen festlegen
+        minLength: 1,
+        //Die Datenquelle für Autocomplete festlegen
+        source: poisOnMap, //Hier anpassen Get Request
+        select: function(event, ui){
+            this.value = ui.item.value
+            
+            let details = poisOnMap.filter(function (el){
+                return el.properties.poiname === ui.item.value
+            })
+            return false
+        }
+    })
+}
