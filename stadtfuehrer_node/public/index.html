@@ -50,12 +50,18 @@
                 </div>
             </nav>
             <!--Main Content-->
-            <div id="contentFrame" class="d-flex justify-content-center flex-wrap align-items-center p-5">
-                <div id="textContent" class=" col col-lg-4 col-12 rounded text-center">
-                    <h1> Sehenswürdigkeiten in Münster</h1>
-                    <div id="introduction">                
-                    </div>  
-                </div>
+        <div id="contentFrame" class="d-flex justify-content-center flex-wrap align-items-center p-5">
+            <div id="textContent" class=" col col-lg-4 col-12 rounded text-center">
+                <h1> Sehenswürdigkeiten in Münster</h1>
+                <p>Wählen Sie die gewünschte Tour</p>
+                <div id="introduction">                
+                </div>  
+                <select class="form-select"  id="indexSelect" onchange="">
+                    <option value="">--Please choose an option--</option>                        
+                </select>
+                <script src="js/indexTours.js"></script>
+                <script type="text/javascript">getIndexTourDataFromDB();</script>
+            </div>
             <div id="mapid" class="col col-lg-8 col-12 border border-dark rounded align-self-lg-end"></div>
             <script src="js/busInfo.js"></script>
             <script src="js/indexSideMap.js"></script>
