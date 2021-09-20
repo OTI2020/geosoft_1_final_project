@@ -4,6 +4,7 @@ var tours_array
 /*
 * @function getAllfromDB - retrieve all data (locations and tours) from mongoDB
 */
+/*
 function getAllfromDB() { 
    {$.ajax({ //handle request via ajax
        url: "/search/getCollections", //request url is the prebuild request
@@ -17,9 +18,31 @@ function getAllfromDB() {
     }
 }
 getAllfromDB();
+*/
 
-
-
+var response;
+function getDatafromDB() { 
+    {$.ajax({ //handle request via ajax
+        url: "/search_tour/getCollection", //request url is the prebuild request
+        method: "GET", //method is GET since we want to get data not post or update it
+        })
+        .done(function(res) { //if the request is done -> successful
+            //bind a popupto the given marker / the popupt is formatted in HTML and 
+            //is enriched with information extracted from the api response
+            //console.log(response[0].geojson.features[0]);
+            response = res;
+            console.log("response of getDatafromDB():");
+            console.log(response);
+        })
+        .fail(function(xhr, status, errorThrown) { //if the request fails (for some reason)
+            console.log("Request has failed!", '/n', "Status: " + status, '/n', "Error: " + errorThrown); //we log a message on the console
+        })
+        .always(function(xhr, status) { //if the request is "closed", either successful or not 
+            console.log("Request completed"); //a short message is logged
+        })
+    }
+}   
+getDatafromDB()
 
 
 /**
