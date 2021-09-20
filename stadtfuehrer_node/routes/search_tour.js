@@ -54,6 +54,8 @@ router.get('/getCollection', function(req, res, next)
       console.log("> > > length of t_result of tour search:");
       console.log(typeof t_result);
       console.log(t_result.length);
+      // sselectTourForDelete(t_result)
+
     })
     console.log("> > > datatype of result of tour search:");
     console.log(typeof t_result);
