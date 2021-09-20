@@ -87,9 +87,6 @@ let geojson =
 }
 
 
-//Variable für die Karte
-let mymap
-
 
 //Die JSON-Objekte abrufen
 let poisOnMap = geojson.features
