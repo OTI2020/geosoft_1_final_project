@@ -1,3 +1,4 @@
+// Express decleration
 var express = require('express'); //get express
 const app = express(); //use express
 var router = express.Router(); //get router
@@ -20,7 +21,7 @@ const client = new MongoClient(url) // mongodb client
 //Post Router
 router.post('/poi', function(req, res, next)
 {
-  
+  // checks if update or delete was pressed
   if(req.body.action=="update"){
 
     //connect to the mongodb database and insert one new element
@@ -34,6 +35,7 @@ router.post('/poi', function(req, res, next)
       {
 
         assert.strictEqual(err, null);
+        // checks if not 0
         if(docs.length > 0) {
             //Update the document in the database
             collection.updateOne({json: req.body.pjson}, {$set:{poiname:req.body.pname ,link:req.body.purl}}, function(err, result)
@@ -44,10 +46,12 @@ router.post('/poi', function(req, res, next)
             res.redirect('/sights_config.html')
         }
         else {
-          res.redirect('/index.html')//redirect after Post
+          res.redirect('/error_undefined.html')//redirect after Post
         }
       })
     })
+
+  // starts if delete was pressed
   }else if(req.body.action=="delete"){
     client.connect(function(err)
     {
@@ -57,7 +61,7 @@ router.post('/poi', function(req, res, next)
         collection.find({json: req.body.pjson}).toArray(function(err, docs)
         {
             assert.strictEqual(err, null)
-
+            // if document exists, delete it
             if(docs.length >0){
                 assert.strictEqual(null, err);
 
@@ -67,12 +71,11 @@ router.post('/poi', function(req, res, next)
                 })
                 res.redirect('/sights_config.html')
             }
+            // if something fails, redirect
             else {
-                res.redirect('/index.html')
+                res.redirect('/error_undefined.html')
             }
-
         })
-
     })
   }
 });

@@ -14,7 +14,10 @@
  * @type Leaflet Layer
  */
     let markerLayer = new L.layerGroup().addTo(mymap);
-getDatafromDB();
+
+    // call getDatafromDB() to load existing pois at page load
+    getDatafromDB();
+
 /**
  * Layer on which the User can draw a shape
  * @type Leaflet Layer
@@ -30,7 +33,7 @@ getDatafromDB();
             }
         },
         draw: {
-            // Only rectangle draw function is needed
+            // Only rectangle and point draw function is needed
             polyline: false,
             polygon: true,
             point: true,
@@ -54,29 +57,3 @@ getDatafromDB();
             drawnItems.clearLayers(); // Clearing old markers
         });
     })
-
-
-/**
- * The method starts a ajax request to get data from OpenWeatherMap at a given location and appends the result to a given marker as a String popup
- * @param {*} coordinateArray Coordinates of a single point
- * @param {*} marker Leaflet marker object
- */
-/*
-function getWeatherData(coordinateArray, marker){
-    let lat= coordinateArray[0];
-    let lng= coordinateArray[1];
-    let url = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lng + "&exclude=minutely,hourly,daily&appid=" + weatherApi+"&units=metric"
-    $.ajax({
-        url: url,
-        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-        success: function(result){
-            console.log(result.current.temp);
-            let weather = "<b>current Weather:</b><br>" +result.current.weather[0].description + "<br>" + result.current.temp + "°C";
-            console.log(weather);
-            marker.bindPopup(weather).openPopup();
-        }
-    }).done(function() {
-        $( this ).addClass( "done" );
-      });
-}
-  */

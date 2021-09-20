@@ -21,24 +21,27 @@ router.post('/newpoi', function(req, res, next)
   poi.poiname = req.body.pname
   poi.json= req.body.pjson
   poi.link = req.body.purl
-    console.log("Test1")
-    // calling validation method from author: https://github.com/mapbox/geojsonhint
+
+  // trying to parse string into json
     try{
       input=JSON.parse(req.body.pjson)
       console.log(input)
-      if(gjv.valid(input)==true){
+      // check if JSON is valid
+      if(gjv.valid(input)==true){ 
         console.log("valid geoJSON");
+
+      // end if JSON not valid
       }else{
         console.log("invalid geoJSON");
         res.redirect("/errorData.html");
         return false;
       }
+    // end if JSON parsing fails
     }catch(error){
       console.log("invalid geoJSON");
       res.redirect("/errorData.html");
       return false;
     }
-    
     // connect to the mongodb database and afterwards, insert one the new element
     client.connect(function(err) 
     {
@@ -54,7 +57,6 @@ router.post('/newpoi', function(req, res, next)
       {
         assert.equal(err, null)
         assert.equal(1, result.result.ok)
-        //console.log(result)
         console.log(`Inserted ${result.insertedCount} document into the collection`)
         res.redirect('/sights_config.html')
       })
