@@ -6,7 +6,7 @@ const port = 3000;
 
 const url = 'mongodb://localhost:27017'
 const client = new MongoClient(url)
-const dbName = 'stadtfuererDB'
+const dbName = 'stadtfuehrerDB'
 const collectionName = 'pois'
 //Parser for Request
 app.use(express.json());
