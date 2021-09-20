@@ -3,7 +3,7 @@ var tours_array
 /*
 * @function getDatafromDB - retrieve all tours from mongoDB tour-Collection
 */
-function getDatafromDB() { 
+function getTourDatafromDB() { 
     {$.ajax({ //handle request via ajax
         url: "/search_tour/getCollection", //request url is the prebuild request
         method: "GET", //method is GET since we want to get data not post or update it
@@ -20,15 +20,9 @@ function getDatafromDB() {
         .always(function(xhr, status) { //if the request is "closed", either successful or not 
             console.log("Request completed"); //a short message is logged
         })
-        console.log("tours_array test_0");
-        console.log(tours_array);
     }
 }   
-getDatafromDB()
-console.log("tours_array test_1");
-console.log(tours_array);
-
-
+getTourDatafromDB()
 
 /**
  * @function selectTourForDelete - function adds a tour to be deleted to the the deleteTour form
