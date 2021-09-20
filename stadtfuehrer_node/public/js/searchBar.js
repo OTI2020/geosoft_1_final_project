@@ -85,7 +85,7 @@
 ]
 }*/
 
-//Soll die lokale TestJSON ersetzen
+//to get the names of the pois as a request
 function getPoiNamesfromDB() { 
     {$.ajax({ //handle request via ajax
         url: "/search", //request url is the prebuild request
@@ -114,27 +114,27 @@ function getPoiNamesfromDB() {
 }
 
 
-function searchThrough(resGeoJSON){
-    //Die JSON-Objekte abrufen
-    let poisOnMap = resGeoJSON;
-    //Teste über Konsole, ob JSON-Objekte übergeben werden
-    console.log("Dies ist eine Testzeile" + poisOnMap)
+function searchThrough(currName){
+    //retrieve the JSON objects
+    //let poisOnMap = currName;
+    //test
+    console.log("Dies ist eine Testzeile" + poiNames)
     
-    //Die POI Namen abrufen
-    //let poiNames = resGeoJSON
+    //retrieve POI names
+    let poiNames = currName;
     //console.log(poiNames)
     
-    //Beim Ausfüllen Autocomplete verwenden
+    //use autocomplete
     $("poisOnMap").autocomplete({
-        //Start nach Anzahl der Zeichen festlegen
+        //Specify start by number of characters
         minLength: 1,
-        //Die Datenquelle für Autocomplete festlegen
-        source: poisOnMap, //Hier anpassen Get Request
+        //Specify the data source for autocomplete
+        source: poiNames, //Hier anpassen Get Request
         select: function(event, ui){
             this.value = ui.item.value
             
             let details = poisOnMap.filter(function (el){
-                return el.properties.poiname === ui.item.value
+                return currName === ui.item.value
             })
             return false
         }
