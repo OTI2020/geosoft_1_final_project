@@ -21,7 +21,7 @@ router.get('/', function(req, res, next)
     assert.strictEqual(null, err);
   
     const db = client.db(dbName); //Database
-    const collection = db.collection(collectionName); //Collection
+    const collection = db.collection(poisCollectionName); //Collection
 
     // Find all documents
     var result = [];
