@@ -51,9 +51,11 @@ router.get('/getCollection', function(req, res, next)
     t_collection.find({}).toArray(function(err, docs_1) 
     {
       t_result = docs_1; //store tours
-      console.log("result of tour search:");
-      console.log(t_result);
     })
+    console.log("search_tour.js:");
+    console.log(" datatype of result of tour search:");
+    console.log(typeof t_result);
+    console.log("test nodemon");
   })
 });
 module.exports = router; //export as router
