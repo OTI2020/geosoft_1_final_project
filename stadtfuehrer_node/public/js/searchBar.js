@@ -88,7 +88,7 @@ let geojson =
 
 
 //Soll die lokale TestJSON ersetzen
-function getDatafromDB() { 
+function getPoiNamesfromDB() { 
     {$.ajax({ //handle request via ajax
         url: "/search", //request url is the prebuild request
         method: "GET", //method is GET since we want to get data not post or update it
@@ -102,11 +102,11 @@ function getDatafromDB() {
 //Die JSON-Objekte abrufen
 let poisOnMap = resGeoJSON
 //Teste über Konsole, ob JSON-Objekte übergeben werden
-console.log(poisOnMap)
+console.log("Dies ist eine Testzeile" + poisOnMap)
 
 //Die POI Namen abrufen
 let poiNames = poisOnMap.map(function(el){
-    return el.properties.poiname
+    return el.poiname
 })
 console.log(poiNames)
 
