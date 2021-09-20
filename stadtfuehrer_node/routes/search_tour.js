@@ -46,16 +46,14 @@ router.get('/getCollection', function(req, res, next)
   {
     const db = client.db(dbName); //Database
     const t_collection = db.collection(toursCollectionName); //tours collection
-    var t_result = []; //tour result
     // Find all documents
     t_collection.find({}).toArray(function(err, docs) 
     {
       res.json(docs); //return documents from Database
-      t_result = docs; //store tours
-      res.json(t_result)
-      console.log("> > > length of t_result of tour search:");
-      console.log(typeof t_result);
-      console.log(t_result.length);
+      var result = docs
+      console.log("> > > result of tour search:");
+      // console.log(typeof docs);
+      console.log(typeof result[0].json);
     })
   })
 });
