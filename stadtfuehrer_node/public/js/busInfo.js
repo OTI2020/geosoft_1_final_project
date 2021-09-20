@@ -29,7 +29,7 @@ function showInformation(json) {
 			jsonHaltestellen=JSON.parse(xhr.responseText);
 				let arr = Object.entries(jsonHaltestellen);
 				let arr2 = arr[1];
-				let arr3 = arr2[1]; //Enthaelt jetzt nur noch 1119 Arrays mit den verschiedenen properties
+				let arr3 = arr2[1]; //Now it contains 1119 arrays with the various properties
 				
 				console.log(jsonHaltestellen); //Testzwecke
 				
@@ -39,16 +39,9 @@ function showInformation(json) {
 				var coords= allBusStops.geometry.coordinates[0];
 				console.log(coords); //Testzwecke
 				
-				//testingArea.innerHTML = JSON.stringify(coords);
-				
-				//Hilfvariable h, um Entfernungen zu speichern und zu Sortierne
-				let h = [];
-				//Hilfvariable k, um Entfernungen zu speichern (in ursprünglicher Anordnung) um nachher die Bushaltestelle wiederzufinden
-				let k = [];
 				/*
-				* Iteriert durch alle Bushaltestellen und speichert die Entfernung aller Bushaltestellen zur Sehenswürdigkeit 
+				* iterating through all bus stops and comparing the calculated distance with an initialized value 
 				*
-				* To-Do: Ergänzung eines weiteren gespeicherten Werts zum Identifizieren der Bushaltestelle (2D Array?)
 				*/
 				var lonSight;
 				var latSight;	
@@ -91,7 +84,7 @@ function showInformation(json) {
 
 
 /**
-* This function starts a request
+* This function starts a request for current weather
 */
 function startApiReqWeather(lat,lng,name,distance) {
 	let xhr = new XMLHttpRequest();
