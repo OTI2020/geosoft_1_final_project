@@ -31,8 +31,8 @@ getTourDatafromDB()
 function fillSelectTour() {
     for (var i=0; i<tours_array.length; i++) {
         var z = document.createElement("option");
-        z.setAttribute("value", JSON.parse(tours_array[i].json).tourName) //
-        var t = document.createTextNode(JSON.parse(tours_array[i].json).tourName)
+        z.setAttribute("value", tours_array[i].tourname);
+        var t = document.createTextNode(tours_array[i].tourname);
         z.appendChild(t);
         document.getElementById("selectTour").appendChild(z);
     }
