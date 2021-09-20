@@ -3,7 +3,7 @@ services:
   app:
     container_name: stadtfuehrer
     build: .
-    image: tobiasbrand/stadtfuehrer
+    image: tobiasbrand/stadtfuehrer_final
     ports:
       - "3000:3000" # forward webserver on standard-http port
     depends_on:
