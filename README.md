@@ -23,6 +23,7 @@ Develops a map-based,  interactive, digital city guide. The  city guide is inten
 * https://www.tutorialrepublic.com/twitter-bootstrap-tutorial/
 * https://getbootstrap.com/docs/3.4/getting-started/
 * also some stackoverflow pages - see in code documentaion
+* and lecture examples - https://github.com/aurioldegbelo/geosoft2021
 
 
 ## contributors

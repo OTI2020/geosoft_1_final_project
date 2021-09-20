@@ -1,11 +1,7 @@
-const weatherApi = ""; //insert here your Api-Key as a constant
+const weatherApi = "142c76b43e74211f21ec417a6ae9b488"; //insert here your Api-Key as a constant
 var reqTerm = ""; //placeholder for the later compound expression (Api Request)
 var lat = 0; //{float} stores the determined coordinates (latitude)
 var lng = 0; //{float} stores the determined coordinates (longitude)
-let jsonHaltestellen;
-var geocoder;
-let cityJSON;
-var xTest;
 var coords;
 
 
