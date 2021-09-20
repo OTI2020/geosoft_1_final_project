@@ -40,6 +40,7 @@ module.exports = router; //export as router
 
 router.get('/getCollection', function(req, res, next) 
 {
+  var t_result = []; //tour result
   //Connect to the mongodb database and retrieve all docs
   client.connect(function(err) 
   {
@@ -47,13 +48,19 @@ router.get('/getCollection', function(req, res, next)
     const t_collection = db.collection(toursCollectionName); //tours collection
 
     // Find all documents
-    var t_result = []; //tour result
-    t_collection.find({}).toArray(function(err, docs_1) 
+    t_collection.find({}).toArray(function(err, docs) 
     {
-      t_result = docs_1; //store tours
+      t_result = docs; //store tours
+      console.log("> > > length of t_result of tour search:");
+      console.log(typeof t_result);
+      console.log(t_result.length);
     })
     console.log("> > > datatype of result of tour search:");
     console.log(typeof t_result);
+    console.log(t_result);
   })
+  console.log("test_12");
+  console.log(t_result);
 });
 module.exports = router; //export as router
+
