@@ -123,7 +123,7 @@ function generateStopMarker(weatherJSON,name,distance,lat,lng){
     html: `<span style="${markerHtmlStyles}" />`
     })
     
-    let localtime = convertTimes(weatherJSON.current.dt)
+    let localtime = convertTimes(weatherJSON.current.dt);
     let temprature = Math.round(weatherJSON.current.temp);
     let localWeatherSub = weatherJSON.current.weather[0].description;
     let weathericon = getIconUrl(weatherJSON.current.weather[0].icon);
@@ -157,4 +157,15 @@ function getIconUrl(id){
         case "50n": return "http://openweathermap.org/img/wn/50n@2x.png";
         default:return "";
     }
+}
+/**
+ * Takes a unix timestemp to convert it to normal time format
+ * @param {*} unixTime unix timestemp
+ * @returns human readable time format
+ */
+ function convertTimes(unixTime){
+    let unix = unixTime;
+    let unixMilli = unix * 1000;
+    let dateObject = new Date(unixMilli);
+    return dateObject.toLocaleTimeString([],{hour: '2-digit', minute:'2-digit'});
 }
