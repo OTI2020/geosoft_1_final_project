@@ -40,29 +40,21 @@ module.exports = router; //export as router
 
 router.get('/getCollection', function(req, res, next) 
 {
-  var t_result = []; //tour result
+  
   //Connect to the mongodb database and retrieve all docs
   client.connect(function(err) 
   {
     const db = client.db(dbName); //Database
     const t_collection = db.collection(toursCollectionName); //tours collection
-
+    var t_result = []; //tour result
     // Find all documents
     t_collection.find({}).toArray(function(err, docs) 
     {
       t_result = docs; //store tours
-      console.log("> > > length of t_result of tour search:");
-      console.log(typeof t_result);
-      console.log(t_result.length);
-      // sselectTourForDelete(t_result)
+      res.json(t_result)    // selectTourForDelete(t_result)
 
     })
-    console.log("> > > datatype of result of tour search:");
-    console.log(typeof t_result);
-    console.log(t_result);
   })
-  console.log("test_12");
-  console.log(t_result);
 });
 module.exports = router; //export as router
 
