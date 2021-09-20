@@ -1,14 +1,17 @@
 const express = require('express'); //require for express
-const MongoClient = require('mongodb').MongoClient 
+// const MongoClient = require('mongodb').MongoClient 
 const assert = require('assert')
 const app= express() //create express app
 const port = 3000;
 
+/*
 const url = 'mongodb://localhost:27017'
 const client = new MongoClient(url)
 const dbName = 'stadtfuererDB'
 const collectionName = 'pois'
 const tour_collectionName = 'tours'
+*/
+
 //Parser for Request
 app.use(express.json());
 app.use(express.urlencoded( {extended: true} )); // because Error: 'body-parser deprecated undefined extended'
