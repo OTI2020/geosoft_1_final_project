@@ -81,7 +81,7 @@ router.post('/newTourManuel', function(req, res, next) {
     const collection = db.collection(collectionName)
     
     // Insert the document in the database
-    collection.insertOne(tour, function(err, result) {
+    collection.insertOne(tourName, function(err, result) {
       assert.equal(err, null)
       assert.equal(1, result.result.ok)
       // console.log(result)
